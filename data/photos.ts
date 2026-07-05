@@ -15,7 +15,17 @@ export type Photo = {
 const LOGO =
   "https://storage.googleapis.com/ployai/45579be0-a8f1-4cae-b0f7-129f8514ab2e/user/009b9641-ee6ae7-7ef3d436fbe34776a91961852583e353-mv2.png";
 
-export const photos = {
+type PhotoManifest = {
+  logo: Photo;
+  hero: Photo;
+  signature: Photo;
+  sightseeing: Photo;
+  reviews: Photo;
+  experience: Record<string, Photo>;
+  arlindo: Photo;
+};
+
+export const photos: PhotoManifest = {
   logo: {
     src: LOGO,
     alt: "Guincho Adventours",
@@ -54,6 +64,7 @@ export const photos = {
   },
 
   experience: {
+    // Indexed by the experience slug. Extend Record when adding a new slug.
     "quad-bike-tours": {
       src: "",
       alt: "Quad Bike Tours",
@@ -92,7 +103,7 @@ export const photos = {
       placeholder: true,
       brief: "Buggy on a dune or coastal trail. Two-seat side-by-side visible.",
     },
-  } satisfies Record<string, Photo>,
+  },
 
   arlindo: {
     src: "",
@@ -101,12 +112,4 @@ export const photos = {
     brief:
       "Working portrait of Arlindo — at the office in Areia, next to a quad, or on the trail. Portrait crop (4:5).",
   },
-} satisfies {
-  logo: Photo;
-  hero: Photo;
-  signature: Photo;
-  sightseeing: Photo;
-  reviews: Photo;
-  experience: Record<string, Photo>;
-  arlindo: Photo;
 };
