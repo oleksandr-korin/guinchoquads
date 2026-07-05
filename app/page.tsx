@@ -1,0 +1,942 @@
+import { experiences } from "@/data/experiences";
+import { pricingTiers } from "@/data/pricing";
+import { faq } from "@/data/faq";
+import { MobileMenu } from "@/app/components/mobile-menu";
+
+// PHASE-12: replace with Arlindo's real address(es), comma-separated.
+const BOOKING_EMAIL = "info@guinchoadventours.pt";
+
+function mailtoBooking(topic: string): string {
+  const subject = `Guincho Adventours — Booking enquiry: ${topic}`;
+  const body = [
+    "Hi Arlindo,",
+    "",
+    `I'd like to book:  ${topic}`,
+    "Preferred date:    ",
+    "Group size:        ",
+    "Name:              ",
+    "Phone:             ",
+    "",
+    "Anything else:",
+    "",
+    "Thanks!",
+  ].join("\n");
+  return `mailto:${BOOKING_EMAIL}?subject=${encodeURIComponent(
+    subject
+  )}&body=${encodeURIComponent(body)}`;
+}
+
+function PhoneIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
+    </svg>
+  );
+}
+
+function PinIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
+  );
+}
+
+function ArrowUpRight({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M7 17L17 7" />
+      <path d="M8 7h9v9" />
+    </svg>
+  );
+}
+
+function Stars() {
+  return (
+    <div className="flex items-center gap-0.5 text-accent">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <svg
+          key={i}
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className="w-4 h-4"
+          aria-hidden="true"
+        >
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+        </svg>
+      ))}
+    </div>
+  );
+}
+
+const IMG_BASE =
+  "https://storage.googleapis.com/ployai/45579be0-a8f1-4cae-b0f7-129f8514ab2e/user";
+
+const LOGO = `${IMG_BASE}/009b9641-ee6ae7-7ef3d436fbe34776a91961852583e353-mv2.png`;
+const HERO_IMG = `${IMG_BASE}/a589cf57-ai-generated-1782050300918.png`;
+const SIGNATURE_IMG = `${IMG_BASE}/eefde744-ai-generated-1782050332322.png`;
+const REVIEWS_IMG = `${IMG_BASE}/996babc5-ai-generated-1782050451945.png`;
+const SIGHTSEEING_IMG = `${IMG_BASE}/996babc5-ai-generated-1782050451945.png`;
+
+const stats = [
+  { value: "18", label: "Years on the trails" },
+  { value: "100,000+", label: "Kilometres ridden" },
+  { value: "~50,000", label: "Happy adventurers" },
+  { value: "6", label: "Ways to explore" },
+];
+
+const highlights = [
+  {
+    title: "Half-day of trails",
+    desc: "Three full hours of trails, stops and scenery — never rushed.",
+  },
+  {
+    title: "Local expert guides",
+    desc: "We've ridden these trails for 18 years and know every turn.",
+  },
+  {
+    title: "All levels welcome",
+    desc: "Full briefing and gear so beginners ride with confidence.",
+  },
+  {
+    title: "Ends at our Guincho office",
+    desc: "The route finishes back at base in Areia, Cascais.",
+  },
+];
+
+const reviews = [
+  {
+    body: "An unforgettable adventure! The guides were friendly and professional, and the coastal trails were stunning. Highly recommend the quad tour to anyone visiting the area.",
+    name: "hplopes",
+    location: "Odivelas, Portugal",
+  },
+  {
+    body: "Absolutely brilliant day out. Well organised from start to finish and the scenery near Sintra is breathtaking. A must-do if you're staying near Cascais.",
+    name: "sharon_taps",
+    location: "Lancaster, United Kingdom",
+  },
+];
+
+export default function Home() {
+  return (
+    <main className="text-foreground">
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/40 backdrop-blur-md border-b border-white/5">
+        <div className="container-wrap flex items-center justify-between h-16">
+          <a href="#top" className="flex items-center gap-2 shrink-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={LOGO}
+              alt="Guincho Adventours"
+              className="h-10 w-auto"
+            />
+          </a>
+          <nav className="hidden lg:flex items-center gap-8 text-sm text-foreground/70 font-medium">
+            <a href="#experiences" className="hover:text-foreground transition whitespace-nowrap">Experiences</a>
+            <a href="#prices" className="hover:text-foreground transition">Prices</a>
+            <a href="#signature" className="hover:text-foreground transition whitespace-nowrap">3-Hour Tour</a>
+            <a href="#sightseeing" className="hover:text-foreground transition">Sightseeing</a>
+            <a href="#reviews" className="hover:text-foreground transition">Reviews</a>
+            <a href="#faq" className="hover:text-foreground transition">FAQ</a>
+            <a href="#contact" className="hover:text-foreground transition">Contact</a>
+          </nav>
+          <div className="hidden lg:flex items-center gap-5">
+            <a
+              href="tel:+351934479075"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-accent transition whitespace-nowrap"
+            >
+              <PhoneIcon className="w-4 h-4 text-accent" />
+              +351 934 479 075
+            </a>
+            <a href="#contact" className="btn btn-primary">BOOK A TOUR</a>
+          </div>
+          <MobileMenu
+            links={[
+              { href: "#experiences", label: "Experiences" },
+              { href: "#prices", label: "Prices" },
+              { href: "#signature", label: "3-Hour Tour" },
+              { href: "#sightseeing", label: "Sightseeing" },
+              { href: "#reviews", label: "Reviews" },
+              { href: "#faq", label: "FAQ" },
+              { href: "#contact", label: "Contact" },
+            ]}
+            phone="+351 934 479 075"
+            bookHref={mailtoBooking("Booking enquiry")}
+          />
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section id="top" className="relative min-h-[80vh] md:min-h-[100vh] flex items-end pt-16">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={HERO_IMG}
+          alt="Riders on quad bikes along the Guincho coast"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 overlay-dark" />
+        <div className="container-wrap relative z-10 pb-10 md:pb-28 w-full">
+          <div className="max-w-4xl">
+            <span className="eyebrow">
+              <PinIcon className="w-4 h-4" />
+              AREIA · GUINCHO · CASCAIS
+            </span>
+            <h1 className="font-heading uppercase text-5xl sm:text-7xl md:text-8xl lg:text-9xl mt-5 leading-[0.95]">
+              RIDE THE WILD
+              <br />
+              <span className="text-accent">ATLANTIC COAST</span>
+            </h1>
+            <p className="mt-6 max-w-xl text-base md:text-lg text-foreground/80 leading-relaxed">
+              Quad bikes, buggies and guided trails along the cliffs of
+              Guincho, Cascais — minutes from Sintra and Lisbon. Real off-road
+              adventure, run by locals who know every dune.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href="#contact" className="btn btn-primary">BOOK A TOUR</a>
+              <a href="#experiences" className="btn btn-secondary">
+                Explore experiences
+              </a>
+            </div>
+            <div className="mt-8 flex items-center gap-3 text-sm text-foreground/70">
+              <Stars />
+              <span>Loved by ~50,000 adventurers over 18 years</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="bg-accent text-accent-foreground">
+        <div className="container-wrap grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8 md:gap-10 py-10 md:py-20">
+          {stats.map((s) => (
+            <div key={s.label} className="text-left">
+              <div className="font-heading uppercase text-4xl sm:text-5xl md:text-6xl leading-none">
+                {s.value}
+              </div>
+              <div className="mt-2 md:mt-3 text-[11px] md:text-sm uppercase tracking-wider md:tracking-widest font-semibold leading-tight">
+                {s.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Experiences */}
+      <section id="experiences" className="py-24 md:py-32">
+        <div className="container-wrap">
+          <div className="max-w-3xl">
+            <span className="eyebrow">EXPERIENCES</span>
+            <h2 className="font-heading uppercase text-5xl md:text-7xl mt-4 leading-[0.95]">
+              SIX WAYS TO <span className="text-accent">EXPLORE</span>
+            </h2>
+            <p className="mt-6 text-foreground/70 leading-relaxed max-w-xl">
+              From adrenaline on the dunes to a calm paddle along the coast —
+              pick your adventure and we&apos;ll handle the rest.
+            </p>
+          </div>
+
+          <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {experiences.map((e) => (
+              <a
+                key={e.title}
+                href="#contact"
+                className="group relative block overflow-hidden rounded-2xl aspect-[4/5] isolate"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={e.img}
+                  alt={e.title}
+                  className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-accent text-accent-foreground flex items-center justify-center transition group-hover:-translate-y-1 group-hover:translate-x-1">
+                  <ArrowUpRight className="w-4 h-4" />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <h3 className="font-heading uppercase text-3xl leading-none">
+                    {e.title}
+                  </h3>
+                  <p className="mt-3 text-sm text-white/80 leading-relaxed">
+                    {e.desc}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Signature Tour */}
+      <section
+        id="signature"
+        className="relative py-24 md:py-32 border-t border-border overflow-hidden"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={SIGNATURE_IMG}
+          alt="Guided riding along the Guincho trails"
+          className="absolute inset-0 h-full w-full object-cover opacity-40"
+        />
+        <div className="absolute inset-0 overlay-side" />
+        <div className="container-wrap relative">
+          <div className="grid lg:grid-cols-12 gap-12 items-start">
+            <div className="lg:col-span-6">
+              <span className="eyebrow">OUR SIGNATURE TOUR</span>
+              <h2 className="font-heading uppercase text-5xl md:text-7xl mt-4 leading-[0.95]">
+                THE 3-HOUR <span className="text-accent">GUIDED RIDE</span>
+              </h2>
+              <p className="mt-6 text-foreground/80 leading-relaxed max-w-lg">
+                The full Guincho Adventours experience: a guided expedition
+                across coastal trails, dunes and viewpoints, finishing back at
+                our office in Areia. Just show up — we bring the machines, the
+                gear and the route.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href={mailtoBooking("3-hour guided ride")}
+                  className="btn btn-primary"
+                >
+                  BOOK THE 3-HOUR TOUR
+                </a>
+                <a href="#prices" className="btn btn-secondary">
+                  See all durations
+                </a>
+              </div>
+              <div className="mt-10 inline-flex items-baseline gap-3">
+                <span className="font-heading text-7xl md:text-8xl">3</span>
+                <span className="text-foreground/70">Hours</span>
+              </div>
+            </div>
+            <div className="lg:col-span-6 grid sm:grid-cols-2 gap-4">
+              {highlights.map((h) => (
+                <div
+                  key={h.title}
+                  className="rounded-xl border border-border bg-background/70 backdrop-blur p-6"
+                >
+                  <h3 className="font-heading text-xl">{h.title}</h3>
+                  <p className="mt-2 text-sm text-foreground/70 leading-relaxed">
+                    {h.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Prefer shorter? — bridge to Prices */}
+          <div className="relative mt-16 md:mt-20 rounded-2xl border border-border bg-background/70 backdrop-blur p-6 md:p-8">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div>
+                <div className="eyebrow">Also available</div>
+                <p className="mt-2 text-foreground/85 text-lg leading-snug">
+                  Prefer something shorter? We also run{" "}
+                  <span className="text-accent font-semibold">
+                    1 h, 1 h 30 and 2 h
+                  </span>{" "}
+                  quad tours — same trails, same guides, different pace.
+                </p>
+              </div>
+              <a
+                href="#prices"
+                className="btn btn-secondary shrink-0 self-start md:self-auto"
+              >
+                See prices
+              </a>
+            </div>
+
+            <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {pricingTiers.map((tier) => (
+                <a
+                  key={tier.slug}
+                  href="#prices"
+                  className={
+                    "group flex flex-col justify-between rounded-xl border p-4 transition " +
+                    (tier.highlight
+                      ? "border-accent/60 bg-accent/5 hover:bg-accent/10"
+                      : "border-border bg-card hover:border-white/30")
+                  }
+                >
+                  <div className="text-[10px] uppercase tracking-widest text-foreground/50 font-semibold">
+                    {tier.duration}
+                  </div>
+                  <div className="mt-3 font-heading text-3xl leading-none">
+                    {tier.priceLabel}
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Prices */}
+      <section id="prices" className="py-24 md:py-32 border-t border-border">
+        <div className="container-wrap">
+          <div className="max-w-3xl">
+            <span className="eyebrow">PRICES</span>
+            <h2 className="font-heading uppercase text-5xl md:text-7xl mt-4 leading-[0.95]">
+              QUAD TOURS <span className="text-accent">FROM €60</span>
+            </h2>
+            <p className="mt-6 text-foreground/70 leading-relaxed max-w-xl">
+              Four durations, one Atlantic coast. Prices are per participant and
+              include all gear and the pre-ride briefing.
+            </p>
+          </div>
+
+          <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {pricingTiers.map((tier) => (
+              <article
+                key={tier.slug}
+                className={
+                  "relative flex flex-col rounded-2xl border p-6 md:p-7 " +
+                  (tier.highlight
+                    ? "border-accent bg-accent/5"
+                    : "border-border bg-card")
+                }
+              >
+                {tier.highlight && (
+                  <div className="absolute -top-3 left-6 bg-accent text-accent-foreground text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full">
+                    Signature
+                  </div>
+                )}
+                <div className="text-xs uppercase tracking-widest text-foreground/50 font-semibold">
+                  {tier.duration}
+                </div>
+                <div className="mt-3 font-heading text-5xl md:text-6xl leading-none">
+                  {tier.priceLabel}
+                </div>
+                <div className="mt-1 text-xs text-foreground/50">per participant</div>
+
+                <p className="mt-6 text-sm text-foreground/80 leading-relaxed">
+                  {tier.scenery}
+                </p>
+
+                <div className="mt-4 text-xs text-foreground/60 leading-relaxed">
+                  <div className="flex items-start gap-2">
+                    <span className="text-accent mt-[2px]">•</span>
+                    <span>{tier.groupRule}</span>
+                  </div>
+                  {tier.weightRule && (
+                    <div className="flex items-start gap-2 mt-1">
+                      <span className="text-accent mt-[2px]">•</span>
+                      <span>{tier.weightRule}</span>
+                    </div>
+                  )}
+                </div>
+
+                <a
+                  href={mailtoBooking(`${tier.duration} quad tour`)}
+                  className={
+                    "btn mt-6 " +
+                    (tier.highlight ? "btn-primary" : "btn-secondary")
+                  }
+                >
+                  BOOK THIS TOUR
+                </a>
+              </article>
+            ))}
+          </div>
+
+          <p className="mt-6 text-xs text-foreground/50">
+            Prefer to ride as a passenger? Passenger mode is available on
+            request for the longer tours — just mention it when you enquire.
+          </p>
+        </div>
+      </section>
+
+      {/* Sightseeing (Jeep) */}
+      <section
+        id="sightseeing"
+        className="relative py-24 md:py-32 border-t border-border overflow-hidden"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={SIGHTSEEING_IMG}
+          alt="Sintra hills and coast from a Land Rover tour"
+          className="absolute inset-0 h-full w-full object-cover opacity-30"
+        />
+        <div className="absolute inset-0 overlay-side" />
+        <div className="container-wrap relative">
+          <div className="grid lg:grid-cols-12 gap-12 items-start">
+            <div className="lg:col-span-6">
+              <span className="eyebrow">SIGHTSEEING TOUR</span>
+              <h2 className="font-heading uppercase text-5xl md:text-7xl mt-4 leading-[0.95]">
+                SINTRA, CABO DA ROCA{" "}
+                <span className="text-accent">&amp; WINE CELLARS</span>
+              </h2>
+              <p className="mt-6 text-foreground/80 leading-relaxed max-w-lg">
+                A calmer, cultural day out. Land Rovers, expert local drivers,
+                UNESCO sites and an optional wine tasting at a working cellar.
+                Ideal for groups of 20 to 50 people — corporate days, family
+                visits, less-active guests.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href={mailtoBooking("Jeep Sintra tour")}
+                  className="btn btn-primary"
+                >
+                  ENQUIRE ABOUT THE JEEP TOUR
+                </a>
+              </div>
+            </div>
+
+            <div className="lg:col-span-6 grid sm:grid-cols-2 gap-4">
+              {[
+                {
+                  title: "Hotel pick-up",
+                  desc: "We collect you at your hotel or a meeting point that works for the group.",
+                },
+                {
+                  title: "Sintra town",
+                  desc: "The UNESCO heritage centre — palaces, misty hills, the whole postcard.",
+                },
+                {
+                  title: "Cabo da Roca",
+                  desc: "Mainland Europe's westernmost cliffs. Photo stops and short walks.",
+                },
+                {
+                  title: "Wine cellar",
+                  desc: "A working cellar visit. Add a full tasting with cheese and bread if you'd like.",
+                },
+                {
+                  title: "No driving",
+                  desc: "You get driven the whole way — alcohol welcome, unlike the quads.",
+                },
+                {
+                  title: "Big groups",
+                  desc: "Comfortably from 20 to 50 people. Perfect for corporate off-sites.",
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-xl border border-border bg-background/70 backdrop-blur p-6"
+                >
+                  <h3 className="font-heading text-xl">{item.title}</h3>
+                  <p className="mt-2 text-sm text-foreground/70 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Groups — stag + corporate */}
+      <section id="groups" className="py-24 md:py-32 border-t border-border">
+        <div className="container-wrap">
+          <div className="max-w-3xl">
+            <span className="eyebrow">GROUPS</span>
+            <h2 className="font-heading uppercase text-5xl md:text-7xl mt-4 leading-[0.95]">
+              STAG PARTIES <span className="text-accent">&amp; CORPORATE DAYS</span>
+            </h2>
+            <p className="mt-6 text-foreground/70 leading-relaxed max-w-xl">
+              Two of our biggest audiences. We run the whole day — briefing,
+              gear, guides, logistics — so the group can just show up and ride.
+            </p>
+          </div>
+
+          <div className="mt-14 grid md:grid-cols-2 gap-6">
+            <article className="rounded-2xl border border-border bg-card p-8 flex flex-col">
+              <div className="eyebrow">Stag &amp; bachelor parties</div>
+              <h3 className="font-heading uppercase text-3xl md:text-4xl mt-3 leading-tight">
+                Big group. Big adventure.
+              </h3>
+              <p className="mt-4 text-foreground/75 leading-relaxed">
+                Weekends, birthdays, groups of mates from 20 to a few dozen.
+                Quads or buggies on the coastal trails — tell us the date and
+                the size, we&apos;ll plan the day around it.
+              </p>
+              <ul className="mt-6 space-y-2 text-sm text-foreground/70">
+                <li className="flex gap-2">
+                  <span className="text-accent">•</span>
+                  Fast, adrenaline-heavy quad tours (1 h or 1 h 30 for bigger groups).
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-accent">•</span>
+                  Full gear, briefing and guides included.
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-accent">•</span>
+                  We&apos;ll help slot in food or drinks stops if you want.
+                </li>
+              </ul>
+              <a
+                href={mailtoBooking("Stag party")}
+                className="btn btn-primary mt-8 self-start"
+              >
+                PLAN YOUR PARTY
+              </a>
+            </article>
+
+            <article className="rounded-2xl border border-border bg-card p-8 flex flex-col">
+              <div className="eyebrow">Corporate events</div>
+              <h3 className="font-heading uppercase text-3xl md:text-4xl mt-3 leading-tight">
+                Off-sites, team days, incentive trips.
+              </h3>
+              <p className="mt-4 text-foreground/75 leading-relaxed">
+                From 10 to 50+ people. Everyone on quads, everyone on the Jeep
+                sightseeing tour, or a mix — half the group on the coast, half
+                in Sintra with wine cellars.
+              </p>
+              <ul className="mt-6 space-y-2 text-sm text-foreground/70">
+                <li className="flex gap-2">
+                  <span className="text-accent">•</span>
+                  Groups from 10 to 50+ — quads and Land Rovers combined.
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-accent">•</span>
+                  Add a wine tasting stop for the sightseeing group.
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-accent">•</span>
+                  One invoice, one point of contact, 18 years of doing this.
+                </li>
+              </ul>
+              <a
+                href={mailtoBooking("Corporate event")}
+                className="btn btn-primary mt-8 self-start"
+              >
+                REQUEST A CORPORATE PROPOSAL
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews */}
+      <section
+        id="reviews"
+        className="relative py-24 md:py-32 border-t border-border overflow-hidden"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={REVIEWS_IMG}
+          alt="Coastal dunes near Guincho"
+          className="absolute inset-0 h-full w-full object-cover opacity-25"
+        />
+        <div className="absolute inset-0 bg-background/60" />
+        <div className="container-wrap relative">
+          <div className="max-w-2xl">
+            <span className="eyebrow">REVIEWS</span>
+            <h2 className="font-heading uppercase text-5xl md:text-7xl mt-4 leading-[0.95]">
+              RIDERS <span className="text-accent">LOVE IT</span>
+            </h2>
+            <p className="mt-5 text-foreground/70 leading-relaxed">
+              Eighteen years, tens of thousands of riders, and a trail of five-star
+              memories along the Atlantic coast.
+            </p>
+          </div>
+
+          <div className="mt-14 grid md:grid-cols-2 gap-6">
+            {reviews.map((r) => (
+              <blockquote
+                key={r.name}
+                className="rounded-xl border border-border bg-background/70 backdrop-blur p-8"
+              >
+                <div className="font-heading text-4xl text-foreground/40 leading-none">
+                  &ldquo;
+                </div>
+                <p className="mt-4 text-foreground/85 leading-relaxed">
+                  {r.body}
+                </p>
+                <footer className="mt-6 text-sm">
+                  <div className="font-semibold">{r.name}</div>
+                  <div className="text-foreground/60">{r.location}</div>
+                </footer>
+              </blockquote>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Owner trust — Meet Arlindo */}
+      <section id="owner" className="py-24 md:py-32 border-t border-border">
+        <div className="container-wrap">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+            {/* Portrait placeholder — replace with real photo in Phase 11. */}
+            <div className="lg:col-span-5">
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-border bg-gradient-to-br from-card via-background to-card flex items-center justify-center">
+                <div className="absolute inset-0 grid place-items-center pointer-events-none">
+                  <span className="font-heading text-accent text-[16rem] leading-none opacity-90 select-none">
+                    A
+                  </span>
+                </div>
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[10px] uppercase tracking-widest text-foreground/50">
+                  <span>Portrait coming soon</span>
+                  <span>Areia · Guincho</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7">
+              <span className="eyebrow">MEET THE OWNER</span>
+              <h2 className="font-heading uppercase text-5xl md:text-7xl mt-4 leading-[0.95]">
+                ARLINDO
+              </h2>
+              <div className="mt-3 text-foreground/60 text-sm uppercase tracking-widest font-semibold">
+                Owner &amp; lead guide
+              </div>
+
+              <blockquote className="mt-8 text-xl md:text-2xl text-foreground/85 leading-snug max-w-xl">
+                <span className="font-heading text-accent text-4xl leading-none align-top mr-1">
+                  &ldquo;
+                </span>
+                Eighteen years on these trails. If you email us, I&apos;m the
+                one who writes back — no call centre, no chatbot.
+              </blockquote>
+
+              <div className="mt-10 grid grid-cols-3 gap-6 max-w-lg">
+                <div>
+                  <div className="font-heading text-4xl md:text-5xl leading-none">
+                    18
+                  </div>
+                  <div className="mt-2 text-[11px] uppercase tracking-widest text-foreground/60 leading-tight">
+                    Years guiding
+                  </div>
+                </div>
+                <div>
+                  <div className="font-heading text-4xl md:text-5xl leading-none">
+                    ~50k
+                  </div>
+                  <div className="mt-2 text-[11px] uppercase tracking-widest text-foreground/60 leading-tight">
+                    Riders looked after
+                  </div>
+                </div>
+                <div>
+                  <div className="font-heading text-4xl md:text-5xl leading-none">
+                    365
+                  </div>
+                  <div className="mt-2 text-[11px] uppercase tracking-widest text-foreground/60 leading-tight">
+                    Days a year, open
+                  </div>
+                </div>
+              </div>
+
+              <a
+                href={mailtoBooking("Question for Arlindo")}
+                className="btn btn-secondary mt-10"
+              >
+                Email Arlindo
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="py-24 md:py-32 border-t border-border">
+        <div className="container-wrap">
+          <div className="max-w-3xl">
+            <span className="eyebrow">FAQ</span>
+            <h2 className="font-heading uppercase text-5xl md:text-7xl mt-4 leading-[0.95]">
+              THE QUESTIONS <span className="text-accent">WE HEAR MOST</span>
+            </h2>
+            <p className="mt-6 text-foreground/70 leading-relaxed max-w-xl">
+              Answered directly by Arlindo. If it&apos;s not here, email us and
+              he&apos;ll write back.
+            </p>
+          </div>
+
+          <div className="mt-12 max-w-3xl divide-y divide-border border-y border-border">
+            {faq.map((item, idx) => (
+              <details
+                key={item.q}
+                className="group py-5"
+                {...(idx === 0 ? { open: true } : {})}
+              >
+                <summary className="flex items-start justify-between gap-6 list-none cursor-pointer">
+                  <span className="font-heading uppercase text-lg md:text-xl leading-snug">
+                    {item.q}
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="mt-1 shrink-0 w-6 h-6 rounded-full border border-border flex items-center justify-center text-foreground/60 transition group-open:rotate-45 group-open:border-accent group-open:text-accent"
+                  >
+                    +
+                  </span>
+                </summary>
+                <div className="mt-3 text-foreground/75 leading-relaxed">
+                  {item.a}
+                </div>
+              </details>
+            ))}
+          </div>
+
+          <p className="mt-8 text-sm text-foreground/50 max-w-3xl">
+            Something we didn&apos;t answer? Email us — we reply the same day.
+          </p>
+        </div>
+      </section>
+
+      {/* Booking / Contact */}
+      <section id="contact" className="py-24 md:py-32 border-t border-border">
+        <div className="container-wrap grid lg:grid-cols-12 gap-12">
+          <div className="lg:col-span-5">
+            <span className="eyebrow">CONTACT</span>
+            <h2 className="font-heading uppercase text-5xl md:text-7xl mt-4 leading-[0.95]">
+              BOOK YOUR <span className="text-accent">RIDE</span>
+            </h2>
+            <p className="mt-5 text-foreground/70 leading-relaxed">
+              Tell us what you&apos;d like to ride and when. We&apos;ll confirm
+              availability and get you out on the trails.
+            </p>
+
+            <dl className="mt-10 space-y-6 text-sm">
+              <div>
+                <dt className="text-foreground/50 uppercase tracking-widest text-xs">
+                  Call us
+                </dt>
+                <dd className="mt-2 space-y-1">
+                  <a
+                    className="block hover:underline"
+                    href="tel:+351934479075"
+                  >
+                    +351 934 479 075
+                  </a>
+                  <a
+                    className="block hover:underline"
+                    href="tel:+351214869700"
+                  >
+                    +351 214 869 700
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="text-foreground/50 uppercase tracking-widest text-xs">
+                  Visit
+                </dt>
+                <dd className="mt-2 text-foreground/85">
+                  Rua da Areia n.º 1306,
+                  <br />
+                  Areia, 2750-095 Cascais
+                </dd>
+              </div>
+              <div>
+                <dt className="text-foreground/50 uppercase tracking-widest text-xs">
+                  Hours
+                </dt>
+                <dd className="mt-2 text-foreground/85">
+                  Mon–Sun · 09:00–18:30
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <form className="lg:col-span-7 rounded-xl border border-border bg-card p-6 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="md:col-span-1">
+              <label htmlFor="name">
+                Name <span className="text-foreground/40">*</span>
+              </label>
+              <input id="name" name="name" required />
+            </div>
+            <div className="md:col-span-1">
+              <label htmlFor="email">
+                Email <span className="text-foreground/40">*</span>
+              </label>
+              <input id="email" name="email" type="email" required />
+            </div>
+            <div className="md:col-span-1">
+              <label htmlFor="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" />
+            </div>
+            <div className="md:col-span-1">
+              <label htmlFor="experience">Experience</label>
+              <select id="experience" name="experience" defaultValue="">
+                <option value="" disabled>Choose one</option>
+                {experiences.map((e) => (
+                  <option key={e.slug}>{e.title}</option>
+                ))}
+                <option>3-Hour Guided Tour</option>
+              </select>
+            </div>
+            <div className="md:col-span-1">
+              <label htmlFor="group">Group size</label>
+              <input id="group" name="group" type="number" min={1} />
+            </div>
+            <div className="md:col-span-1">
+              <label htmlFor="date">Preferred date</label>
+              <input id="date" name="date" type="date" />
+            </div>
+            <div className="md:col-span-2">
+              <label htmlFor="message">Message</label>
+              <textarea id="message" name="message" rows={5} />
+            </div>
+            <div className="md:col-span-2 flex justify-end">
+              <button type="submit" className="btn btn-primary">
+                REQUEST BOOKING
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-border py-14">
+        <div className="container-wrap grid md:grid-cols-3 gap-10">
+          <div>
+            <div className="flex items-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={LOGO} alt="Guincho Adventours" className="h-10 w-auto" />
+            </div>
+            <p className="mt-6 text-sm text-foreground/60 max-w-sm leading-relaxed">
+              Adventure tours along the wild Atlantic coast of Areia, Guincho —
+              Cascais, Portugal. Minutes from Sintra and Lisbon.
+            </p>
+          </div>
+
+          <div>
+            <div className="eyebrow mb-4">Explore</div>
+            <ul className="space-y-2 text-sm">
+              <li><a className="hover:underline" href="#experiences">Experiences</a></li>
+              <li><a className="hover:underline" href="#signature">3-Hour Tour</a></li>
+              <li><a className="hover:underline" href="#reviews">Reviews</a></li>
+              <li><a className="hover:underline" href="#contact">Book a tour</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <div className="eyebrow mb-4">Contact</div>
+            <ul className="space-y-2 text-sm text-foreground/80">
+              <li><a className="hover:underline" href="tel:+351934479075">+351 934 479 075</a></li>
+              <li><a className="hover:underline" href="tel:+351214869700">+351 214 869 700</a></li>
+              <li>Rua da Areia n.º 1306, Areia, 2750-095 Cascais</li>
+              <li>Mon–Sun · 09:00–18:30</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="container-wrap mt-12 border-t border-border pt-6 text-xs text-foreground/50">
+          <div>© 2026 Guincho Adventours. All rights reserved.</div>
+        </div>
+      </footer>
+    </main>
+  );
+}
