@@ -102,9 +102,9 @@ const IMG_BASE =
 
 const LOGO = `${IMG_BASE}/009b9641-ee6ae7-7ef3d436fbe34776a91961852583e353-mv2.png`;
 const HERO_IMG = `${IMG_BASE}/a589cf57-ai-generated-1782050300918.png`;
-const SIGNATURE_IMG = `${IMG_BASE}/eefde744-ai-generated-1782050332322.png`;
-const REVIEWS_IMG = `${IMG_BASE}/996babc5-ai-generated-1782050451945.png`;
-const SIGHTSEEING_IMG = `${IMG_BASE}/996babc5-ai-generated-1782050451945.png`;
+const SIGNATURE_IMG = `${IMG_BASE}/996babc5-ai-generated-1782050451945.png`;
+const REVIEWS_IMG = `${IMG_BASE}/55ae8a0e-ai-generated-1782050335003.png`;
+const SIGHTSEEING_IMG = `${IMG_BASE}/f5dac523-ai-generated-1782050304656.png`;
 
 const stats = [
   { value: "18", label: "Years on the trails" },
