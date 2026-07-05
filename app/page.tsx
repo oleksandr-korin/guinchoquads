@@ -4,9 +4,9 @@ import { faq } from "@/data/faq";
 import { photos } from "@/data/photos";
 import { MobileMenu } from "@/app/components/mobile-menu";
 import { PhotoSlot } from "@/app/components/photo-slot";
+import { site, siteUrl } from "@/app/lib/site";
 
-// PHASE-12: replace with Arlindo's real address(es), comma-separated.
-const BOOKING_EMAIL = "info@guinchoadventours.pt";
+const BOOKING_EMAIL = site.emails.booking;
 
 function mailtoBooking(topic: string): string {
   const subject = `Guincho Adventours — Booking enquiry: ${topic}`;
@@ -140,9 +140,124 @@ const reviews = [
   },
 ];
 
+function jsonLd() {
+  const businessId = `${site.url}#business`;
+  const address = {
+    "@type": "PostalAddress",
+    streetAddress: site.address.street,
+    addressLocality: site.address.locality,
+    postalCode: site.address.postalCode,
+    addressRegion: site.address.region,
+    addressCountry: site.address.country,
+  };
+
+  const localBusiness = {
+    "@type": "TouristAttraction",
+    "@id": businessId,
+    name: site.name,
+    url: site.url,
+    description: site.description,
+    image: siteUrl("/opengraph-image.png"),
+    telephone: site.phones.mobile,
+    email: site.emails.booking,
+    address,
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: site.geo.lat,
+      longitude: site.geo.lng,
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ],
+        opens: "09:00",
+        closes: "18:30",
+      },
+    ],
+    priceRange: "€€",
+    sameAs: Object.values(site.socials).filter(Boolean),
+  };
+
+  const offerCatalog = {
+    "@type": "OfferCatalog",
+    name: "Quad tour durations",
+    itemListElement: pricingTiers.map((tier) => ({
+      "@type": "Offer",
+      name: `${tier.duration} quad tour`,
+      description: tier.scenery,
+      priceCurrency: "EUR",
+      price:
+        tier.priceLabel.startsWith("€")
+          ? tier.priceLabel.replace(/[^0-9.]/g, "")
+          : undefined,
+      priceSpecification:
+        tier.priceLabel.startsWith("€")
+          ? {
+              "@type": "PriceSpecification",
+              priceCurrency: "EUR",
+              price: tier.priceLabel.replace(/[^0-9.]/g, ""),
+            }
+          : undefined,
+      availability: "https://schema.org/InStock",
+      itemOffered: {
+        "@type": "Service",
+        name: `${tier.duration} guided quad tour`,
+        provider: { "@id": businessId },
+      },
+    })),
+  };
+
+  const reviewGraph = reviews.map((r) => ({
+    "@type": "Review",
+    itemReviewed: { "@id": businessId },
+    reviewBody: r.body,
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: 5,
+      bestRating: 5,
+    },
+    author: { "@type": "Person", name: r.name },
+  }));
+
+  const faqPage = {
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+
+  const website = {
+    "@type": "WebSite",
+    "@id": `${site.url}#website`,
+    url: site.url,
+    name: site.name,
+    inLanguage: "en",
+    publisher: { "@id": businessId },
+  };
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [localBusiness, offerCatalog, ...reviewGraph, faqPage, website],
+  };
+}
+
 export default function Home() {
   return (
     <main className="text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd()) }}
+      />
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/40 backdrop-blur-md border-b border-white/5">
         <div className="container-wrap flex items-center justify-between h-16">
@@ -166,12 +281,21 @@ export default function Home() {
           <div className="hidden lg:flex items-center gap-5">
             <a
               href="tel:+351934479075"
+              data-track="phone_click"
+              data-track-params='{"source":"header"}'
               className="inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-accent transition whitespace-nowrap"
             >
               <PhoneIcon className="w-4 h-4 text-accent" />
               +351 934 479 075
             </a>
-            <a href="#contact" className="btn btn-primary">BOOK A TOUR</a>
+            <a
+              href={mailtoBooking("Booking enquiry")}
+              data-track="book_click"
+              data-track-params='{"source":"header"}'
+              className="btn btn-primary"
+            >
+              BOOK A TOUR
+            </a>
           </div>
           <MobileMenu
             links={[
@@ -218,8 +342,19 @@ export default function Home() {
               adventure, run by locals who know every dune.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#contact" className="btn btn-primary">BOOK A TOUR</a>
-              <a href="#experiences" className="btn btn-secondary">
+              <a
+                href={mailtoBooking("Booking enquiry")}
+                data-track="book_click"
+                data-track-params='{"source":"hero"}'
+                className="btn btn-primary"
+              >
+                BOOK A TOUR
+              </a>
+              <a
+                href="#experiences"
+                data-track="explore_click"
+                className="btn btn-secondary"
+              >
                 Explore experiences
               </a>
             </div>
@@ -268,7 +403,9 @@ export default function Home() {
               return (
                 <a
                   key={e.title}
-                  href="#contact"
+                  href={mailtoBooking(e.title)}
+                  data-track="experience_click"
+                  data-track-params={`{"slug":"${e.slug}"}`}
                   className="group relative block overflow-hidden rounded-2xl aspect-[4/5] isolate"
                 >
                   <div className="absolute inset-0">
@@ -330,6 +467,8 @@ export default function Home() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
                   href={mailtoBooking("3-hour guided ride")}
+                  data-track="book_click"
+                  data-track-params='{"source":"signature"}'
                   className="btn btn-primary"
                 >
                   BOOK THE 3-HOUR TOUR
@@ -461,6 +600,8 @@ export default function Home() {
 
                 <a
                   href={mailtoBooking(`${tier.duration} quad tour`)}
+                  data-track="pricing_tier_click"
+                  data-track-params={`{"tier":"${tier.slug}"}`}
                   className={
                     "btn mt-6 " +
                     (tier.highlight ? "btn-primary" : "btn-secondary")
@@ -507,6 +648,8 @@ export default function Home() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
                   href={mailtoBooking("Jeep Sintra tour")}
+                  data-track="book_click"
+                  data-track-params='{"source":"jeep"}'
                   className="btn btn-primary"
                 >
                   ENQUIRE ABOUT THE JEEP TOUR
@@ -597,6 +740,8 @@ export default function Home() {
               </ul>
               <a
                 href={mailtoBooking("Stag party")}
+                data-track="book_click"
+                data-track-params='{"source":"stag"}'
                 className="btn btn-primary mt-8 self-start"
               >
                 PLAN YOUR PARTY
@@ -629,6 +774,8 @@ export default function Home() {
               </ul>
               <a
                 href={mailtoBooking("Corporate event")}
+                data-track="book_click"
+                data-track-params='{"source":"corporate"}'
                 className="btn btn-primary mt-8 self-start"
               >
                 REQUEST A CORPORATE PROPOSAL
@@ -745,6 +892,8 @@ export default function Home() {
 
               <a
                 href={mailtoBooking("Question for Arlindo")}
+                data-track="book_click"
+                data-track-params='{"source":"owner"}'
                 className="btn btn-secondary mt-10"
               >
                 Email Arlindo
@@ -821,12 +970,16 @@ export default function Home() {
                   <a
                     className="block hover:underline"
                     href="tel:+351934479075"
+                    data-track="phone_click"
+                    data-track-params='{"source":"contact"}'
                   >
                     +351 934 479 075
                   </a>
                   <a
                     className="block hover:underline"
                     href="tel:+351214869700"
+                    data-track="phone_click"
+                    data-track-params='{"source":"contact"}'
                   >
                     +351 214 869 700
                   </a>
@@ -928,8 +1081,8 @@ export default function Home() {
           <div>
             <div className="eyebrow mb-4">Contact</div>
             <ul className="space-y-2 text-sm text-foreground/80">
-              <li><a className="hover:underline" href="tel:+351934479075">+351 934 479 075</a></li>
-              <li><a className="hover:underline" href="tel:+351214869700">+351 214 869 700</a></li>
+              <li><a className="hover:underline" href="tel:+351934479075" data-track="phone_click" data-track-params='{"source":"footer"}'>+351 934 479 075</a></li>
+              <li><a className="hover:underline" href="tel:+351214869700" data-track="phone_click" data-track-params='{"source":"footer"}'>+351 214 869 700</a></li>
               <li>Rua da Areia n.º 1306, Areia, 2750-095 Cascais</li>
               <li>Mon–Sun · 09:00–18:30</li>
             </ul>

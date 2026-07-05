@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { track } from "@/app/lib/analytics";
 
 type LinkItem = { href: string; label: string };
 
@@ -80,7 +81,12 @@ export function MobileMenu({ links, phone, bookHref }: Props) {
       <button
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
-        onClick={() => setOpen((v) => !v)}
+        onClick={() =>
+          setOpen((v) => {
+            if (!v) track("menu_open");
+            return !v;
+          })
+        }
         className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/5 text-foreground"
       >
         {open ? (
