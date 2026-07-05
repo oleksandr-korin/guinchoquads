@@ -1,7 +1,9 @@
 import { experiences } from "@/data/experiences";
 import { pricingTiers } from "@/data/pricing";
 import { faq } from "@/data/faq";
+import { photos } from "@/data/photos";
 import { MobileMenu } from "@/app/components/mobile-menu";
+import { PhotoSlot } from "@/app/components/photo-slot";
 
 // PHASE-12: replace with Arlindo's real address(es), comma-separated.
 const BOOKING_EMAIL = "info@guinchoadventours.pt";
@@ -97,14 +99,7 @@ function Stars() {
   );
 }
 
-const IMG_BASE =
-  "https://storage.googleapis.com/ployai/45579be0-a8f1-4cae-b0f7-129f8514ab2e/user";
-
-const LOGO = `${IMG_BASE}/009b9641-ee6ae7-7ef3d436fbe34776a91961852583e353-mv2.png`;
-const HERO_IMG = `${IMG_BASE}/a589cf57-ai-generated-1782050300918.png`;
-const SIGNATURE_IMG = `${IMG_BASE}/996babc5-ai-generated-1782050451945.png`;
-const REVIEWS_IMG = `${IMG_BASE}/55ae8a0e-ai-generated-1782050335003.png`;
-const SIGHTSEEING_IMG = `${IMG_BASE}/f5dac523-ai-generated-1782050304656.png`;
+const LOGO = photos.logo.src;
 
 const stats = [
   { value: "18", label: "Years on the trails" },
@@ -196,12 +191,15 @@ export default function Home() {
 
       {/* Hero */}
       <section id="top" className="relative min-h-[80vh] md:min-h-[100vh] flex items-end pt-16">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={HERO_IMG}
-          alt="Riders on quad bikes along the Guincho coast"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
+        <div className="absolute inset-0">
+          <PhotoSlot
+            photo={photos.hero}
+            variant="hero"
+            slotLabel="Hero shot"
+            className="w-full h-full"
+            imgClassName="absolute inset-0 h-full w-full object-cover"
+          />
+        </div>
         <div className="absolute inset-0 overlay-dark" />
         <div className="container-wrap relative z-10 pb-10 md:pb-28 w-full">
           <div className="max-w-4xl">
@@ -264,32 +262,43 @@ export default function Home() {
           </div>
 
           <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {experiences.map((e) => (
-              <a
-                key={e.title}
-                href="#contact"
-                className="group relative block overflow-hidden rounded-2xl aspect-[4/5] isolate"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={e.img}
-                  alt={e.title}
-                  className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-                <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-accent text-accent-foreground flex items-center justify-center transition group-hover:-translate-y-1 group-hover:translate-x-1">
-                  <ArrowUpRight className="w-4 h-4" />
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 className="font-heading uppercase text-3xl leading-none">
-                    {e.title}
-                  </h3>
-                  <p className="mt-3 text-sm text-white/80 leading-relaxed">
-                    {e.desc}
-                  </p>
-                </div>
-              </a>
-            ))}
+            {experiences.map((e) => {
+              const slot = photos.experience[e.slug];
+              const hasReal = slot && !slot.placeholder && slot.src;
+              return (
+                <a
+                  key={e.title}
+                  href="#contact"
+                  className="group relative block overflow-hidden rounded-2xl aspect-[4/5] isolate"
+                >
+                  <div className="absolute inset-0">
+                    <PhotoSlot
+                      photo={slot}
+                      variant="card"
+                      slotLabel={e.title}
+                      className="w-full h-full"
+                      imgClassName="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  {hasReal && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                  )}
+                  <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-accent text-accent-foreground flex items-center justify-center transition group-hover:-translate-y-1 group-hover:translate-x-1">
+                    <ArrowUpRight className="w-4 h-4" />
+                  </div>
+                  {hasReal && (
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <h3 className="font-heading uppercase text-3xl leading-none">
+                        {e.title}
+                      </h3>
+                      <p className="mt-3 text-sm text-white/80 leading-relaxed">
+                        {e.desc}
+                      </p>
+                    </div>
+                  )}
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -299,11 +308,10 @@ export default function Home() {
         id="signature"
         className="relative py-24 md:py-32 border-t border-border overflow-hidden"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={SIGNATURE_IMG}
-          alt="Guided riding along the Guincho trails"
-          className="absolute inset-0 h-full w-full object-cover opacity-40"
+        <PhotoSlot
+          photo={photos.signature}
+          variant="background"
+          imgClassName="absolute inset-0 h-full w-full object-cover opacity-40"
         />
         <div className="absolute inset-0 overlay-side" />
         <div className="container-wrap relative">
@@ -476,11 +484,10 @@ export default function Home() {
         id="sightseeing"
         className="relative py-24 md:py-32 border-t border-border overflow-hidden"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={SIGHTSEEING_IMG}
-          alt="Sintra hills and coast from a Land Rover tour"
-          className="absolute inset-0 h-full w-full object-cover opacity-30"
+        <PhotoSlot
+          photo={photos.sightseeing}
+          variant="background"
+          imgClassName="absolute inset-0 h-full w-full object-cover opacity-30"
         />
         <div className="absolute inset-0 overlay-side" />
         <div className="container-wrap relative">
@@ -636,11 +643,10 @@ export default function Home() {
         id="reviews"
         className="relative py-24 md:py-32 border-t border-border overflow-hidden"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={REVIEWS_IMG}
-          alt="Coastal dunes near Guincho"
-          className="absolute inset-0 h-full w-full object-cover opacity-25"
+        <PhotoSlot
+          photo={photos.reviews}
+          variant="background"
+          imgClassName="absolute inset-0 h-full w-full object-cover opacity-25"
         />
         <div className="absolute inset-0 bg-background/60" />
         <div className="container-wrap relative">
@@ -681,18 +687,15 @@ export default function Home() {
       <section id="owner" className="py-24 md:py-32 border-t border-border">
         <div className="container-wrap">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-            {/* Portrait placeholder — replace with real photo in Phase 11. */}
             <div className="lg:col-span-5">
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-border bg-gradient-to-br from-card via-background to-card flex items-center justify-center">
-                <div className="absolute inset-0 grid place-items-center pointer-events-none">
-                  <span className="font-heading text-accent text-[16rem] leading-none opacity-90 select-none">
-                    A
-                  </span>
-                </div>
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[10px] uppercase tracking-widest text-foreground/50">
-                  <span>Portrait coming soon</span>
-                  <span>Areia · Guincho</span>
-                </div>
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-border">
+                <PhotoSlot
+                  photo={photos.arlindo}
+                  variant="portrait"
+                  slotLabel="Portrait of Arlindo"
+                  className="w-full h-full"
+                  imgClassName="absolute inset-0 h-full w-full object-cover"
+                />
               </div>
             </div>
 
