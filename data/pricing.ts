@@ -6,6 +6,7 @@ export type PricingTier = {
   scenery: string;
   weightRule?: string;
   highlight?: boolean;
+  perkBadge?: string; // small chip on the card — highlights a headline perk
 };
 
 // PHASE-12: confirm 3-hour price with Arlindo.
@@ -23,7 +24,8 @@ export const pricingTiers: PricingTier[] = [
     priceLabel: "€75",
     groupRule: "Great for photo hunters and medium groups",
     scenery:
-      "The 1-hour coastal loop plus a detour to Abano beach — our hidden-cove photo stop, off the usual tourist trail.",
+      "The 1-hour coastal loop plus a detour to Praia do Abano — our hidden-cove photo stop, off the usual tourist trail.",
+    perkBadge: "+ Praia do Abano",
   },
   {
     slug: "2h",

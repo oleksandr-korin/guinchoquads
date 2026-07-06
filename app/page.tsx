@@ -507,7 +507,7 @@ export default function Home() {
                   <span className="text-accent font-semibold">
                     1 h, 1 h 30 and 2 h
                   </span>{" "}
-                  quad tours — with the 1 h 30 adding an Abano beach photo stop.
+                  quad tours — with the 1 h 30 adding a Praia do Abano photo stop.
                 </p>
               </div>
               <a
@@ -571,6 +571,11 @@ export default function Home() {
                 {tier.highlight && (
                   <div className="absolute -top-3 left-6 bg-accent text-accent-foreground text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full">
                     Signature
+                  </div>
+                )}
+                {tier.perkBadge && (
+                  <div className="absolute -top-3 right-6 bg-accent text-accent-foreground text-[11px] font-bold tracking-wide uppercase px-3 py-1 rounded-full whitespace-nowrap">
+                    {tier.perkBadge}
                   </div>
                 )}
                 <div className="text-xs uppercase tracking-widest text-foreground/50 font-semibold">
