@@ -34,7 +34,8 @@ The current landing page (rebuild of `staging-crossfit-black-edition-c-5b85e612.
 | 11 | `phase-11-photography.md` | Photo asset plan (replace AI images). |
 | 12 | `phase-12-open-questions.md` | Blockers waiting on Arlindo / Alex. |
 | 13 | `phase-13-analytics.md` | GA4 tag + custom event tracking (mailto CTAs, pricing tiers, phone, menu). |
-| 14 | `phase-14-seo.md` | SEO fundamentals — metadata, JSON-LD, sitemap/robots, Core Web Vitals, semantic HTML. |
+| 14 | `phase-14-seo.md` | SEO fundamentals — metadata, JSON-LD, sitemap/robots, Core Web Vitals, semantic HTML. Includes promo-aware structured data section. |
+| 15 | `phase-15-promos.md` | Time-limited promo calendar — full-year `data/promos.ts` with client-clock auto-activation, ribbon/callout/badge placements, mailto pre-fill. |
 
 ## Files this project will touch
 
@@ -45,5 +46,6 @@ The current landing page (rebuild of `staging-crossfit-black-edition-c-5b85e612.
 - `public/photos/` — real photography once Arlindo delivers them (Phase 11).
 - `app/lib/analytics.ts`, `app/components/consent-banner.tsx` — GA4 wrapper + consent banner (Phase 13).
 - `app/sitemap.ts`, `app/robots.ts`, `public/opengraph-image.png` — SEO surface files (Phase 14).
+- `data/promos.ts`, `app/lib/promos.ts`, `app/components/promo-*.tsx` — promo calendar + placements (Phase 15).
 
 Each phase file below lists the exact files it touches, the acceptance criteria, and any blockers.

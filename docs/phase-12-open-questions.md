@@ -24,6 +24,8 @@ Things that block phases above. Collect answers from Arlindo in one pass instead
 - **Office coordinates** — lat/lng for the Areia office, needed for LocalBusiness `geo`. (Phase 14.)
 - **Google Business Profile URL** and social profile links (Instagram, Facebook, GetYourGuide, TripAdvisor) — needed for `sameAs`. (Phase 14.)
 - **Real review count + average rating** — powers `AggregateRating` structured data. (Phase 14.)
+- **Promo calendar sign-off** — which promos to run this year, group discount rule, ribbon-vs-badges preference. See `phase-15-promos.md` for the strawman table Arlindo needs to redline.
+- **Google Business Profile access** — per promo, we should post a matching Offer to GBP. It's the fastest promo SEO surface. Confirm Arlindo owns the GBP and can add posts / share access. (Phase 14 + Phase 15.)
 
 ### Content review
 

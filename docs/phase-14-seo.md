@@ -113,6 +113,105 @@ Weave the following into H1/H2/body without keyword stuffing:
 - Plan for `/pt` locale later as a separate route group (`app/[locale]/…`) with `hreflang` alternate metadata.
 - Not blocking the launch — flag as a follow-up.
 
+## Promo-aware structured data (ties into Phase 15)
+
+Time-limited promos surface in search results only if search engines and AI
+crawlers can parse them as first-class offers, not just body copy. When we
+ship the promo calendar (Phase 15), extend the JSON-LD graph on the home page
+so every active promo is machine-readable.
+
+### `Offer.priceValidUntil` on discounted tiers
+
+Every promo entry in `data/promos.ts` declares which pricing tiers it
+discounts. When a promo is active, mutate the matching `Offer` nodes in the
+already-existing `OfferCatalog`:
+
+- `price` → the discounted number.
+- `priceCurrency` stays `"EUR"`.
+- `priceValidUntil` → the promo's `ends` date in `YYYY-MM-DD` (Europe/Lisbon).
+- `availability` stays `"https://schema.org/InStock"`.
+- Add `eligibleQuantity` for group-size rules
+  (`{ "@type": "QuantitativeValue", "minValue": 5 }` for a "groups of 5+" promo).
+
+Example — 1 h tour discounted 10 % during a Winter Special:
+
+```json
+{
+  "@type": "Offer",
+  "name": "1 h quad tour — Winter Special",
+  "priceCurrency": "EUR",
+  "price": "54",
+  "priceValidUntil": "2026-02-28",
+  "availability": "https://schema.org/InStock",
+  "itemOffered": { "@type": "Service", "name": "1-hour guided quad tour" }
+}
+```
+
+Google may surface the sale price in rich results if crawled inside the
+window. AIs with real-time search will read the `priceValidUntil` and treat
+it as a currency signal ("this offer is still active").
+
+### `SpecialAnnouncement` for hero-ribbon promos
+
+Reserve `SpecialAnnouncement` for campaigns that qualify for a
+`hero-ribbon` placement — big seasonal pushes, not always-on badges. One
+node per active ribbon promo, appended to the `@graph`:
+
+```json
+{
+  "@type": "SpecialAnnouncement",
+  "@id": "https://guinchoadventours.pt/#promo-winter-2026",
+  "name": "Winter Special — 15 % off all tours",
+  "text": "…same copy as the ribbon…",
+  "datePosted": "2026-01-01",
+  "expires": "2026-02-28",
+  "category": "https://schema.org/AnnouncementCategoryPromotion",
+  "spatialCoverage": { "@type": "Place", "name": "Cascais, Portugal" },
+  "announcementLocation": { "@id": "https://guinchoadventours.pt/#business" }
+}
+```
+
+`SpecialAnnouncement` was popularised for COVID advisories but Google still
+honours it for promotions when `category` is `Promotion`. It's an
+under-used schema — cheap edge for AI citation.
+
+### Regenerate from the promo calendar
+
+Both additions plug directly into the promo source of truth (`data/promos.ts`)
+so nothing is hand-maintained twice. Build a `promoJsonLd(activePromos)` helper
+that emits:
+
+- The mutated `Offer` nodes.
+- One `SpecialAnnouncement` per hero-ribbon promo.
+
+Compose it into the existing `jsonLd()` function in `app/page.tsx`.
+
+### Google Business Profile is the fastest promo SEO surface
+
+For each promo cycle, add a matching post to Google Business Profile:
+
+- Post type: `Offer` (has `redeem by` date and CTA button).
+- Same headline, copy, and end date as the ribbon.
+- Adds a promo card to the Maps listing — indexed almost immediately, seen
+  by anyone Googling "quad tours Cascais".
+- Free, no site changes required.
+
+Track this in the Phase 12 checklist so it isn't forgotten each season.
+
+### Optional: `/offers` route as a stable SEO surface
+
+If Arlindo eventually wants promos discoverable by Google as *promos* (as
+opposed to "quad tours" first), add a `/offers` page listing current and
+upcoming promos. Benefits:
+
+- Stable URL Google can index once and revisit.
+- Clean target for AI citations ("Best deals on quad tours in Cascais").
+- Same `data/promos.ts` source — zero duplicate content.
+- Add its URL to `app/sitemap.ts`.
+
+Skip until we've shipped one full promo cycle and know it's worth the extra
+surface. See Phase 15 for the promo calendar itself.
+
 ## Analytics feedback loop
 
 - Use GA4 (Phase 13) + Google Search Console to close the loop:
