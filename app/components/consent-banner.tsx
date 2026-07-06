@@ -47,7 +47,14 @@ export function ConsentBanner({ enabled }: { enabled: boolean }) {
     >
       <div className="text-sm text-foreground/85 leading-relaxed">
         We use analytics cookies to see which tours people click on. Nothing
-        else. You can say no and browse as normal.
+        else. You can say no and browse as normal.{" "}
+        <a
+          href="/privacy"
+          className="underline decoration-accent underline-offset-4 hover:text-accent"
+        >
+          Learn more
+        </a>
+        .
       </div>
       <div className="mt-4 flex gap-2">
         <button

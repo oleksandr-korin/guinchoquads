@@ -1088,8 +1088,13 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="container-wrap mt-12 border-t border-border pt-6 text-xs text-foreground/50">
+        <div className="container-wrap mt-12 border-t border-border pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-foreground/50">
           <div>© 2026 Guincho Adventours. All rights reserved.</div>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <a className="hover:text-foreground" href="/terms">Terms</a>
+            <a className="hover:text-foreground" href="/privacy">Privacy</a>
+            <span className="text-foreground/40">RNAAT [TODO]</span>
+          </div>
         </div>
       </footer>
     </main>

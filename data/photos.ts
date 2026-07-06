@@ -1,9 +1,15 @@
 // Single source of truth for every photo slot on the site.
-// When a real photo lands, drop the file into public/photos/<name> and
-// change the `src` of the matching slot below. Then delete `placeholder: true`.
 //
-// While `placeholder: true`, the site renders a clear "PHOTO NEEDED" tile
-// with the `brief` text so Arlindo can see exactly what to send.
+// TO ACTIVATE A PHOTO:
+// 1. Drop the file into `public/photos/` using the exact filename below.
+//    e.g. hero.jpg → /public/photos/hero.jpg
+// 2. Delete the `placeholder: true` line from that slot.
+// 3. Commit + push. Vercel auto-deploys.
+//
+// The `src` fields already point at the expected local paths — you never
+// need to edit them unless you use a different filename. While `placeholder:
+// true` is set, the site renders a "PHOTO NEEDED" tile with the `brief`
+// text instead of hitting the (still-missing) file.
 
 export type Photo = {
   src: string;
@@ -32,7 +38,7 @@ export const photos: PhotoManifest = {
   },
 
   hero: {
-    src: "",
+    src: "/photos/hero.jpg",
     alt: "Riders on quad bikes along the Guincho coast at sunset",
     placeholder: true,
     brief:
@@ -40,7 +46,7 @@ export const photos: PhotoManifest = {
   },
 
   signature: {
-    src: "",
+    src: "/photos/signature.jpg",
     alt: "Guided 3-hour quad tour along the Guincho trails",
     placeholder: true,
     brief:
@@ -48,7 +54,7 @@ export const photos: PhotoManifest = {
   },
 
   sightseeing: {
-    src: "",
+    src: "/photos/sightseeing.jpg",
     alt: "Sintra + Cabo da Roca sightseeing tour",
     placeholder: true,
     brief:
@@ -56,7 +62,7 @@ export const photos: PhotoManifest = {
   },
 
   reviews: {
-    src: "",
+    src: "/photos/reviews.jpg",
     alt: "Coastal landscape near Guincho",
     placeholder: true,
     brief:
@@ -66,39 +72,39 @@ export const photos: PhotoManifest = {
   experience: {
     // Indexed by the experience slug. Extend Record when adding a new slug.
     "quad-bike-tours": {
-      src: "",
+      src: "/photos/quad-bike-tours.jpg",
       alt: "Quad Bike Tours",
       placeholder: true,
       brief: "Rider on a quad on the coastal trail. Action or ready-to-ride pose.",
     },
     "sea-kayak": {
-      src: "",
+      src: "/photos/sea-kayak.jpg",
       alt: "Sea Kayak",
       placeholder: true,
       brief: "Kayakers in a cove along the Atlantic coast near Guincho.",
     },
     "jeep-sintra-tour": {
-      src: "",
+      src: "/photos/jeep-sintra-tour.jpg",
       alt: "Jeep Sintra Tour",
       placeholder: true,
       brief:
         "Land Rover on the road with Sintra behind, or wine cellar tasting scene.",
     },
     "mountain-bike": {
-      src: "",
+      src: "/photos/mountain-bike.jpg",
       alt: "Mountain Bike",
       placeholder: true,
       brief: "Mountain biker on a forest / dune singletrack with ocean in view.",
     },
     hiking: {
-      src: "",
+      src: "/photos/hiking.jpg",
       alt: "Hiking",
       placeholder: true,
       brief:
         "Small group hiking coastal cliffs or Sintra hills with a guide — the calm alternative.",
     },
     buggies: {
-      src: "",
+      src: "/photos/buggies.jpg",
       alt: "Buggies",
       placeholder: true,
       brief: "Buggy on a dune or coastal trail. Two-seat side-by-side visible.",
@@ -106,7 +112,7 @@ export const photos: PhotoManifest = {
   },
 
   arlindo: {
-    src: "",
+    src: "/photos/arlindo.jpg",
     alt: "Arlindo — owner and lead guide, Guincho Adventours",
     placeholder: true,
     brief:
