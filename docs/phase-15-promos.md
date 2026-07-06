@@ -2,6 +2,22 @@
 
 Arlindo asked for a way to put vouchers / seasonal offers on the site. The mailto-only architecture already handles redemption trivially — every enquiry email can carry a voucher marker for him to honor on reply. What we're building here is the **presentation** layer: a full-year promo calendar that auto-activates and auto-expires without anyone touching the site.
 
+## Feature flag
+
+The whole promo system is gated on `NEXT_PUBLIC_PROMOS_ENABLED`. Defaults off.
+
+- **Off (default)** — `data/promos.ts` still ships, the components still ship, but `activePromos()` returns `[]` so no ribbon / callouts / badges render. Zero visible surface area.
+- **On** — set `NEXT_PUBLIC_PROMOS_ENABLED=true` in Vercel and redeploy. All active-window promos activate on their `starts` timestamp per client clock, no further deploys needed.
+
+Turn-on command once Arlindo signs off on the strawman:
+
+```bash
+printf true | vercel env add NEXT_PUBLIC_PROMOS_ENABLED production
+vercel deploy --prod --yes
+```
+
+Keep the flag off while the calendar is still placeholder content.
+
 ## Files
 
 - `data/promos.ts` — the source of truth. Typed calendar of every promo for the year.
