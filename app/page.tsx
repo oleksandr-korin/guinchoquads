@@ -507,7 +507,7 @@ export default function Home() {
                   <span className="text-accent font-semibold">
                     1 h, 1 h 30 and 2 h
                   </span>{" "}
-                  quad tours — same trails, same guides, different pace.
+                  quad tours — with the 1 h 30 adding an Abano beach photo stop.
                 </p>
               </div>
               <a

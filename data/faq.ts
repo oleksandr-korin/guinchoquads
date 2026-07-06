@@ -4,7 +4,7 @@ export type FaqItem = { q: string; a: string };
 export const faq: FaqItem[] = [
   {
     q: "How long are your tours?",
-    a: "1 h, 1 h 30, 2 h and 3 h. Most guests pick the 1 h. The 2 h and 3 h show the best scenery — up to Peninha and along the coast.",
+    a: "1 h, 1 h 30, 2 h and 3 h. Most guests pick the 1 h. The 1 h 30 adds a detour to Abano beach — our hidden-cove photo stop. The 2 h and 3 h go further, up to Peninha and along the coast.",
   },
   {
     q: "How much do the quad tours cost?",

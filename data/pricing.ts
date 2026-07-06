@@ -21,8 +21,9 @@ export const pricingTiers: PricingTier[] = [
     slug: "1h30",
     duration: "1 h 30 min",
     priceLabel: "€75",
-    groupRule: "Medium group (over 8 people)",
-    scenery: "Same trails as the 1 h, extra time for briefing and more guides.",
+    groupRule: "Great for photo hunters and medium groups",
+    scenery:
+      "The 1-hour coastal loop plus a detour to Abano beach — our hidden-cove photo stop, off the usual tourist trail.",
   },
   {
     slug: "2h",
