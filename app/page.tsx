@@ -4,29 +4,11 @@ import { faq } from "@/data/faq";
 import { photos } from "@/data/photos";
 import { MobileMenu } from "@/app/components/mobile-menu";
 import { PhotoSlot } from "@/app/components/photo-slot";
+import { PromoRibbon } from "@/app/components/promo-ribbon";
+import { PromoCallout } from "@/app/components/promo-callout";
+import { PromoBadge } from "@/app/components/promo-badge";
 import { site, siteUrl } from "@/app/lib/site";
-
-const BOOKING_EMAIL = site.emails.booking;
-
-function mailtoBooking(topic: string): string {
-  const subject = `Guincho Adventours — Booking enquiry: ${topic}`;
-  const body = [
-    "Hi Arlindo,",
-    "",
-    `I'd like to book:  ${topic}`,
-    "Preferred date:    ",
-    "Group size:        ",
-    "Name:              ",
-    "Phone:             ",
-    "",
-    "Anything else:",
-    "",
-    "Thanks!",
-  ].join("\n");
-  return `mailto:${BOOKING_EMAIL}?subject=${encodeURIComponent(
-    subject
-  )}&body=${encodeURIComponent(body)}`;
-}
+import { mailtoBooking } from "@/app/lib/mailto";
 
 function PhoneIcon({ className = "" }: { className?: string }) {
   return (
@@ -313,6 +295,8 @@ export default function Home() {
         </div>
       </header>
 
+      <PromoRibbon />
+
       {/* Hero */}
       <section id="top" className="relative min-h-[80vh] md:min-h-[100vh] flex items-end pt-16">
         <div className="absolute inset-0">
@@ -497,6 +481,8 @@ export default function Home() {
             </div>
           </div>
 
+          <PromoCallout placement="signature-callout" className="mt-16 md:mt-20" />
+
           {/* Prefer shorter? — bridge to Prices */}
           <div className="relative mt-16 md:mt-20 rounded-2xl border border-border bg-background/70 backdrop-blur p-6 md:p-8">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
@@ -556,6 +542,8 @@ export default function Home() {
               include all gear and the pre-ride briefing.
             </p>
           </div>
+
+          <PromoCallout placement="prices-callout" className="mt-10" />
 
           <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {pricingTiers.map((tier) => (
@@ -639,7 +627,10 @@ export default function Home() {
         <div className="container-wrap relative">
           <div className="grid lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-6">
-              <span className="eyebrow">SIGHTSEEING TOUR</span>
+              <div className="flex items-center gap-3 flex-wrap">
+                <span className="eyebrow">SIGHTSEEING TOUR</span>
+                <PromoBadge placement="sightseeing-badge" />
+              </div>
               <h2 className="font-heading uppercase text-5xl md:text-7xl mt-4 leading-[0.95]">
                 SINTRA, CABO DA ROCA{" "}
                 <span className="text-accent">&amp; WINE CELLARS</span>
@@ -708,7 +699,10 @@ export default function Home() {
       <section id="groups" className="py-24 md:py-32 border-t border-border">
         <div className="container-wrap">
           <div className="max-w-3xl">
-            <span className="eyebrow">GROUPS</span>
+            <div className="flex items-center gap-3 flex-wrap">
+              <span className="eyebrow">GROUPS</span>
+              <PromoBadge placement="groups-badge" />
+            </div>
             <h2 className="font-heading uppercase text-5xl md:text-7xl mt-4 leading-[0.95]">
               STAG PARTIES <span className="text-accent">&amp; CORPORATE DAYS</span>
             </h2>
