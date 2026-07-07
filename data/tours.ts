@@ -70,7 +70,7 @@ export const tours: Record<string, Tour> = {
         id: "2h",
         name: "2 hours",
         duration: "2 hours",
-        price: "€100",
+        price: "€110",
         description:
           "Up to Peninha (top of the mountain) and back to the coast — first tier with premium scenery.",
       },
@@ -136,7 +136,7 @@ export const tours: Record<string, Tour> = {
         duration: "1 h 30",
         price: "€75",
       },
-      { id: "2h", name: "2 hours", duration: "2 hours", price: "€100" },
+      { id: "2h", name: "2 hours", duration: "2 hours", price: "€110" },
       { id: "3h", name: "3 hours (signature)", duration: "3 hours", price: "€140" },
     ],
     included: [
