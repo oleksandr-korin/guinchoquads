@@ -36,6 +36,7 @@ The current landing page (rebuild of `staging-crossfit-black-edition-c-5b85e612.
 | 13 | `phase-13-analytics.md` | GA4 tag + custom event tracking (mailto CTAs, pricing tiers, phone, menu). |
 | 14 | `phase-14-seo.md` | SEO fundamentals — metadata, JSON-LD, sitemap/robots, Core Web Vitals, semantic HTML. Includes promo-aware structured data section. |
 | 15 | `phase-15-promos.md` | Time-limited promo calendar — full-year `data/promos.ts` with client-clock auto-activation, ribbon/callout/badge placements, mailto pre-fill. |
+| 16 | `phase-16-subpages.md` | Sub-page architecture — per-experience + per-audience pages, `TouristTrip` schema, breadcrumbs, internal linking. |
 
 ## Files this project will touch
 
