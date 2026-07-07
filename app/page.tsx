@@ -9,6 +9,7 @@ import { PromoCallout } from "@/app/components/promo-callout";
 import { PromoBadge } from "@/app/components/promo-badge";
 import { site, siteUrl } from "@/app/lib/site";
 import { mailtoBooking } from "@/app/lib/mailto";
+import { primaryNav } from "@/app/lib/nav";
 
 function PhoneIcon({ className = "" }: { className?: string }) {
   return (
@@ -251,14 +252,16 @@ export default function Home() {
               className="h-10 w-auto"
             />
           </a>
-          <nav className="hidden lg:flex items-center gap-8 text-sm text-foreground/70 font-medium">
-            <a href="#experiences" className="hover:text-foreground transition whitespace-nowrap">Experiences</a>
-            <a href="#prices" className="hover:text-foreground transition">Prices</a>
-            <a href="#signature" className="hover:text-foreground transition whitespace-nowrap">3-Hour Tour</a>
-            <a href="#sightseeing" className="hover:text-foreground transition">Sightseeing</a>
-            <a href="#reviews" className="hover:text-foreground transition">Reviews</a>
-            <a href="#faq" className="hover:text-foreground transition">FAQ</a>
-            <a href="#contact" className="hover:text-foreground transition">Contact</a>
+          <nav className="hidden lg:flex items-center gap-7 text-sm text-foreground/70 font-medium">
+            {primaryNav.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="hover:text-foreground transition whitespace-nowrap"
+              >
+                {link.label}
+              </a>
+            ))}
           </nav>
           <div className="hidden lg:flex items-center gap-5">
             <a
@@ -280,15 +283,7 @@ export default function Home() {
             </a>
           </div>
           <MobileMenu
-            links={[
-              { href: "#experiences", label: "Experiences" },
-              { href: "#prices", label: "Prices" },
-              { href: "#signature", label: "3-Hour Tour" },
-              { href: "#sightseeing", label: "Sightseeing" },
-              { href: "#reviews", label: "Reviews" },
-              { href: "#faq", label: "FAQ" },
-              { href: "#contact", label: "Contact" },
-            ]}
+            links={primaryNav}
             phone="+351 934 479 075"
             bookHref={mailtoBooking("Booking enquiry")}
           />
@@ -1070,9 +1065,11 @@ export default function Home() {
           <div>
             <div className="eyebrow mb-4">Explore</div>
             <ul className="space-y-2 text-sm">
-              <li><a className="hover:underline" href="#experiences">Experiences</a></li>
-              <li><a className="hover:underline" href="#signature">3-Hour Tour</a></li>
-              <li><a className="hover:underline" href="#reviews">Reviews</a></li>
+              <li><a className="hover:underline" href="/tours">Tours</a></li>
+              <li><a className="hover:underline" href="/groups/stag-parties">Stag parties</a></li>
+              <li><a className="hover:underline" href="/groups/corporate">Corporate events</a></li>
+              <li><a className="hover:underline" href="/gift-a-tour">Gift a tour</a></li>
+              <li><a className="hover:underline" href="#faq">FAQ</a></li>
               <li><a className="hover:underline" href="#contact">Book a tour</a></li>
             </ul>
           </div>
