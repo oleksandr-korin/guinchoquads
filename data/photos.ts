@@ -39,18 +39,12 @@ export const photos: PhotoManifest = {
 
   hero: {
     src: "/photos/hero.jpg",
-    alt: "Riders on quad bikes along the Guincho coast at sunset",
-    placeholder: true,
-    brief:
-      "Wide landscape shot of one or two quad riders on the Guincho coast — golden hour, cliffs and Atlantic behind them.",
+    alt: "Rider on a red quad bike above the Guincho coast",
   },
 
   signature: {
     src: "/photos/signature.jpg",
-    alt: "Guided 3-hour quad tour along the Guincho trails",
-    placeholder: true,
-    brief:
-      "Wide landscape of a small group riding the coastal trail with a guide. Used as a subtle background behind text.",
+    alt: "Small group of riders stopped at a coastal viewpoint on the Guincho trail",
   },
 
   sightseeing: {
@@ -63,25 +57,18 @@ export const photos: PhotoManifest = {
 
   reviews: {
     src: "/photos/reviews.jpg",
-    alt: "Coastal landscape near Guincho",
-    placeholder: true,
-    brief:
-      "Atmospheric coast / dunes shot — Guincho beach or cliff view. Used as a subtle background behind quotes.",
+    alt: "Happy group of Guincho Adventours riders posed on quads at a coastal cliff",
   },
 
   experience: {
     // Indexed by the experience slug. Extend Record when adding a new slug.
     "quad-bike-tours": {
       src: "/photos/quad-bike-tours.jpg",
-      alt: "Quad Bike Tours",
-      placeholder: true,
-      brief: "Rider on a quad on the coastal trail. Action or ready-to-ride pose.",
+      alt: "Rider splashing a red quad through mud on the Guincho trails",
     },
     "sea-kayak": {
       src: "/photos/sea-kayak.jpg",
-      alt: "Sea Kayak",
-      placeholder: true,
-      brief: "Kayakers in a cove along the Atlantic coast near Guincho.",
+      alt: "Sea kayakers paddling in a rocky cove of the Atlantic coast",
     },
     "jeep-sintra-tour": {
       src: "/photos/jeep-sintra-tour.jpg",
@@ -105,9 +92,7 @@ export const photos: PhotoManifest = {
     },
     buggies: {
       src: "/photos/buggies.jpg",
-      alt: "Buggies",
-      placeholder: true,
-      brief: "Buggy on a dune or coastal trail. Two-seat side-by-side visible.",
+      alt: "Two riders celebrating in a green Guincho Adventours buggy at the coast",
     },
   },
 
