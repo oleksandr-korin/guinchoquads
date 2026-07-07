@@ -387,7 +387,7 @@ export default function Home() {
               return (
                 <a
                   key={e.title}
-                  href={mailtoBooking(e.title)}
+                  href={`/tours/${e.slug}`}
                   data-track="experience_click"
                   data-track-params={`{"slug":"${e.slug}"}`}
                   className="group relative block overflow-hidden rounded-2xl aspect-[4/5] isolate"
@@ -738,7 +738,7 @@ export default function Home() {
                 </li>
               </ul>
               <a
-                href={mailtoBooking("Stag party")}
+                href="/groups/stag-parties"
                 data-track="book_click"
                 data-track-params='{"source":"stag"}'
                 className="btn btn-primary mt-8 self-start"
@@ -772,7 +772,7 @@ export default function Home() {
                 </li>
               </ul>
               <a
-                href={mailtoBooking("Corporate event")}
+                href="/groups/corporate"
                 data-track="book_click"
                 data-track-params='{"source":"corporate"}'
                 className="btn btn-primary mt-8 self-start"

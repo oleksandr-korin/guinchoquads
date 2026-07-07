@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
-import { site, siteUrl } from "@/app/lib/site";
+import { siteUrl } from "@/app/lib/site";
+import { tourSlugs } from "@/data/tours";
+import { groupSlugs } from "@/data/groups";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -9,6 +11,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1,
+    },
+    {
+      url: siteUrl("/tours"),
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    ...tourSlugs.map((slug) => ({
+      url: siteUrl(`/tours/${slug}`),
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    ...groupSlugs.map((slug) => ({
+      url: siteUrl(`/groups/${slug}`),
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    {
+      url: siteUrl("/gift-a-tour"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: siteUrl("/terms"),
