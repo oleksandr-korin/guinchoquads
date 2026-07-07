@@ -213,14 +213,16 @@ export default async function TourDetail({
                     Minimum group of {v.minGroup} to run.
                   </p>
                 )}
-                <a
-                  href={mailtoBooking(`${tour.title} — ${v.name}`)}
-                  data-track="book_click"
-                  data-track-params={`{"source":"tour_${slug}_${v.id}"}`}
-                  className="btn btn-secondary mt-6"
-                >
-                  Book {v.name}
-                </a>
+                <div className="mt-auto pt-6">
+                  <a
+                    href={mailtoBooking(`${tour.title} — ${v.name}`)}
+                    data-track="book_click"
+                    data-track-params={`{"source":"tour_${slug}_${v.id}"}`}
+                    className="btn btn-secondary w-full"
+                  >
+                    Book this tour
+                  </a>
+                </div>
               </article>
             ))}
           </div>
