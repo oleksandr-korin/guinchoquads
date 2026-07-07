@@ -5,7 +5,7 @@
 
 export const legal = {
   // National tourism registration — legally required to display.
-  rnaat: "[TODO: RNAAT registration number]",
+  rnaat: "78/2008",
   insuranceUnderwriter: "[TODO: insurance underwriter]",
   vatNumber: "[TODO: NIF / VAT number]",
   companyName: "Guincho Adventours",
