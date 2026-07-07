@@ -10,6 +10,7 @@ import { PromoBadge } from "@/app/components/promo-badge";
 import { site, siteUrl } from "@/app/lib/site";
 import { mailtoBooking } from "@/app/lib/mailto";
 import { primaryNav } from "@/app/lib/nav";
+import { reviews } from "@/data/reviews";
 
 function PhoneIcon({ className = "" }: { className?: string }) {
   return (
@@ -110,18 +111,6 @@ const highlights = [
   },
 ];
 
-const reviews = [
-  {
-    body: "An unforgettable adventure! The guides were friendly and professional, and the coastal trails were stunning. Highly recommend the quad tour to anyone visiting the area.",
-    name: "hplopes",
-    location: "Odivelas, Portugal",
-  },
-  {
-    body: "Absolutely brilliant day out. Well organised from start to finish and the scenery near Sintra is breathtaking. A must-do if you're staying near Cascais.",
-    name: "sharon_taps",
-    location: "Lancaster, United Kingdom",
-  },
-];
 
 function jsonLd() {
   const businessId = `${site.url}#business`;
