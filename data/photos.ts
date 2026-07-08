@@ -49,10 +49,7 @@ export const photos: PhotoManifest = {
 
   sightseeing: {
     src: "/photos/sightseeing.jpg",
-    alt: "Sintra + Cabo da Roca sightseeing tour",
-    placeholder: true,
-    brief:
-      "Land Rover on a Sintra road, Sintra town view, or a wine-cellar tasting scene. Used as a subtle background.",
+    alt: "Horseback rider on the Moorish Castle parapet in Sintra, misty hills sweeping down to the coast",
   },
 
   reviews: {
@@ -79,16 +76,11 @@ export const photos: PhotoManifest = {
     },
     "mountain-bike": {
       src: "/photos/mountain-bike.jpg",
-      alt: "Mountain Bike",
-      placeholder: true,
-      brief: "Mountain biker on a forest / dune singletrack with ocean in view.",
+      alt: "Guided mountain-bike group stopped at a coastal lighthouse with the Atlantic behind",
     },
     hiking: {
       src: "/photos/hiking.jpg",
-      alt: "Hiking",
-      placeholder: true,
-      brief:
-        "Small group hiking coastal cliffs or Sintra hills with a guide — the calm alternative.",
+      alt: "Small group hiking a coastal trail with the Atlantic behind",
     },
     buggies: {
       src: "/photos/buggies.jpg",
@@ -98,9 +90,6 @@ export const photos: PhotoManifest = {
 
   arlindo: {
     src: "/photos/arlindo.jpg",
-    alt: "Arlindo — owner and lead guide, Guincho Adventours",
-    placeholder: true,
-    brief:
-      "Working portrait of Arlindo — at the office in Areia, next to a quad, or on the trail. Portrait crop (4:5).",
+    alt: "Arlindo — owner and lead guide, on the trail in a Guincho Adventours shirt",
   },
 };
