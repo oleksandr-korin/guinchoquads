@@ -284,13 +284,18 @@ export default function Home() {
       {/* Hero */}
       <section id="top" className="relative min-h-[80vh] md:min-h-[100vh] flex items-end pt-16">
         <div className="absolute inset-0">
-          <PhotoSlot
-            photo={photos.hero}
-            variant="hero"
-            slotLabel="Hero shot"
-            className="w-full h-full"
-            imgClassName="absolute inset-0 h-full w-full object-cover object-[30%_45%] sm:object-center"
-          />
+          <picture>
+            <source
+              media="(max-width: 639px)"
+              srcSet="/photos/hero-mobile.jpg"
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={photos.hero.src}
+              alt={photos.hero.alt}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </picture>
         </div>
         <div className="absolute inset-0 overlay-dark" />
         <div className="container-wrap relative z-10 pb-10 md:pb-28 w-full">
