@@ -298,6 +298,8 @@ export default function Home() {
           </picture>
         </div>
         <div className="absolute inset-0 overlay-dark" />
+        {/* Extra mobile-only tint — the portrait crop is bright, this darkens for text legibility. */}
+        <div className="absolute inset-0 bg-black/30 sm:hidden pointer-events-none" />
         <div className="container-wrap relative z-10 pb-10 md:pb-28 w-full">
           <div className="max-w-4xl md:ml-auto md:text-right">
             <span className="eyebrow md:justify-end">
