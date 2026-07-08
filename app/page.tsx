@@ -294,8 +294,8 @@ export default function Home() {
         </div>
         <div className="absolute inset-0 overlay-dark" />
         <div className="container-wrap relative z-10 pb-10 md:pb-28 w-full">
-          <div className="max-w-4xl">
-            <span className="eyebrow">
+          <div className="max-w-4xl md:ml-auto md:text-right">
+            <span className="eyebrow md:justify-end">
               <PinIcon className="w-4 h-4" />
               AREIA · GUINCHO · CASCAIS
             </span>
@@ -304,12 +304,12 @@ export default function Home() {
               <br />
               <span className="text-accent">ATLANTIC COAST</span>
             </h1>
-            <p className="mt-6 max-w-xl text-base md:text-lg text-foreground/80 leading-relaxed">
+            <p className="mt-6 max-w-xl md:ml-auto text-base md:text-lg text-foreground/80 leading-relaxed">
               Quad bikes, buggies and guided trails along the cliffs of
               Guincho, Cascais — minutes from Sintra and Lisbon. Real off-road
               adventure, run by locals who know every dune.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3 md:justify-end">
               <a
                 href={mailtoBooking("Booking enquiry")}
                 data-track="book_click"
@@ -326,7 +326,7 @@ export default function Home() {
                 Explore experiences
               </a>
             </div>
-            <div className="mt-8 flex items-center gap-3 text-sm text-foreground/70">
+            <div className="mt-8 flex items-center gap-3 text-sm text-foreground/70 md:justify-end">
               <Stars />
               <span>Loved by ~50,000 adventurers over 18 years</span>
             </div>
