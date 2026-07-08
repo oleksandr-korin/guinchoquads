@@ -289,7 +289,7 @@ export default function Home() {
             variant="hero"
             slotLabel="Hero shot"
             className="w-full h-full"
-            imgClassName="absolute inset-0 h-full w-full object-cover"
+            imgClassName="absolute inset-0 h-full w-full object-cover object-[30%_45%] sm:object-center"
           />
         </div>
         <div className="absolute inset-0 overlay-dark" />
