@@ -69,7 +69,7 @@ export const photos: PhotoManifest = {
     },
     "jeep-sintra-tour": {
       src: "/photos/jeep-sintra-tour.jpg",
-      alt: "Land Rover Defender on a dirt trail through coastal scrub near Sintra",
+      alt: "Fleet of Land Rover Defenders — including the zebra-print safari — on a Sintra staging area",
     },
     "mountain-bike": {
       src: "/photos/mountain-bike.jpg",
