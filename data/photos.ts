@@ -69,10 +69,7 @@ export const photos: PhotoManifest = {
     },
     "jeep-sintra-tour": {
       src: "/photos/jeep-sintra-tour.jpg",
-      alt: "Jeep Sintra Tour",
-      placeholder: true,
-      brief:
-        "Land Rover on the road with Sintra behind, or wine cellar tasting scene.",
+      alt: "Land Rover Defender on a dirt trail through coastal scrub near Sintra",
     },
     "mountain-bike": {
       src: "/photos/mountain-bike.jpg",
