@@ -530,7 +530,8 @@ export default function Home() {
             </h2>
             <p className="mt-6 text-foreground/70 leading-relaxed max-w-xl">
               Four durations, one Atlantic coast. Prices are per participant and
-              include all gear and the pre-ride briefing.
+              include all gear and the pre-ride briefing. Prices do not include
+              VAT.
             </p>
           </div>
 

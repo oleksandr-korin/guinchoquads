@@ -142,6 +142,9 @@ export default function GiftPage() {
           <h2 className="font-heading uppercase text-4xl md:text-5xl mt-4 leading-tight">
             What to give
           </h2>
+          <p className="mt-4 text-sm text-foreground/60">
+            Prices do not include VAT.
+          </p>
           <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {options.map((o) => (
               <Link

@@ -177,6 +177,9 @@ export default async function TourDetail({
             <h2 className="font-heading uppercase text-4xl md:text-5xl mt-4 leading-tight">
               Pick your ride
             </h2>
+            <p className="mt-4 text-sm text-foreground/60">
+              Prices do not include VAT.
+            </p>
           </div>
           <div
             className={

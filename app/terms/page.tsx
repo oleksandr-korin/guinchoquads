@@ -155,6 +155,11 @@ export default function TermsPage() {
 
       <h2>11. Prices &amp; surcharges</h2>
       <p>
+        All prices shown on our website and in quotes are net of VAT unless
+        expressly stated otherwise. VAT, where applicable, is added at the
+        prevailing Portuguese rate at the time of booking.
+      </p>
+      <p>
         Our trip prices are subject to variable and seasonal pricing, both of
         which are standard practice within the tour industry. This means our
         tour prices may vary at any time in accordance with demand, market
