@@ -997,51 +997,21 @@ export default function Home() {
             </dl>
           </div>
 
-          <form className="lg:col-span-7 rounded-xl border border-border bg-card p-6 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div className="md:col-span-1">
-              <label htmlFor="name">
-                Name <span className="text-foreground/40">*</span>
-              </label>
-              <input id="name" name="name" required />
-            </div>
-            <div className="md:col-span-1">
-              <label htmlFor="email">
-                Email <span className="text-foreground/40">*</span>
-              </label>
-              <input id="email" name="email" type="email" required />
-            </div>
-            <div className="md:col-span-1">
-              <label htmlFor="phone">Phone</label>
-              <input id="phone" name="phone" type="tel" />
-            </div>
-            <div className="md:col-span-1">
-              <label htmlFor="experience">Experience</label>
-              <select id="experience" name="experience" defaultValue="">
-                <option value="" disabled>Choose one</option>
-                {experiences.map((e) => (
-                  <option key={e.slug}>{e.title}</option>
-                ))}
-                <option>3-Hour Guided Tour</option>
-              </select>
-            </div>
-            <div className="md:col-span-1">
-              <label htmlFor="group">Group size</label>
-              <input id="group" name="group" type="number" min={1} />
-            </div>
-            <div className="md:col-span-1">
-              <label htmlFor="date">Preferred date</label>
-              <input id="date" name="date" type="date" />
-            </div>
-            <div className="md:col-span-2">
-              <label htmlFor="message">Message</label>
-              <textarea id="message" name="message" rows={5} />
-            </div>
-            <div className="md:col-span-2 flex justify-end">
-              <button type="submit" className="btn btn-primary">
-                REQUEST BOOKING
-              </button>
-            </div>
-          </form>
+          <div className="lg:col-span-7 rounded-xl border border-border bg-card p-8 md:p-14 flex flex-col items-start justify-center">
+            <p className="text-foreground/85 text-lg md:text-xl leading-relaxed max-w-lg">
+              Tap the button and your email app opens with a ready-to-fill
+              booking template — date, group size, questions. Arlindo replies
+              the same day.
+            </p>
+            <a
+              href={mailtoBooking("Booking enquiry")}
+              data-track="book_click"
+              data-track-params='{"source":"contact_section"}'
+              className="btn btn-primary mt-10"
+            >
+              REQUEST BOOKING
+            </a>
+          </div>
         </div>
       </section>
 

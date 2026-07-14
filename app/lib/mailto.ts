@@ -18,7 +18,10 @@ export function mailtoBooking(topic: string, promo?: Promo | null): string {
     "",
     "Thanks!"
   );
+  // RFC 6068: mailto body newlines must be CRLF. Some mail clients
+  // (notably Apple Mail on iOS) collapse bare LF into spaces, which
+  // flattens the whole template into one line.
   return `mailto:${site.emails.booking}?subject=${encodeURIComponent(
     subject
-  )}&body=${encodeURIComponent(lines.join("\n"))}`;
+  )}&body=${encodeURIComponent(lines.join("\r\n"))}`;
 }
