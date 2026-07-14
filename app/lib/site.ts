@@ -8,16 +8,16 @@ export const site = {
   tagline: "Ride the wild Atlantic coast",
   description:
     "Quad bikes, buggies, sea kayak, mountain bike, hiking and Jeep sightseeing along the wild Atlantic coast of Guincho, Cascais — minutes from Sintra and Lisbon. 18 years, ~50,000 happy adventurers.",
-  // PHASE-12: swap to the production domain once Arlindo confirms.
   url:
-    process.env.NEXT_PUBLIC_SITE_URL || "https://guinchoquads.vercel.app",
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.guinchotours.org",
   phones: {
     mobile: "+351 934 479 075",
     landline: "+351 214 869 700",
   },
   emails: {
-    // PHASE-12: replace with Arlindo's real addresses.
-    booking: "info@guinchoadventours.pt",
+    // PHASE-12: mailbox not yet provisioned on guinchotours.org — no MX
+    // records on the domain today. Placeholder until Arlindo confirms.
+    booking: "info@guinchotours.org",
   },
   address: {
     street: "Rua da Areia n.º 1306",

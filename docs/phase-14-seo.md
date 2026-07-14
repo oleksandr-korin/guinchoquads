@@ -20,7 +20,7 @@ The rebuild is a single-page site with plenty of organic-search intent behind it
 - `openGraph`: `type: "website"`, `locale: "en_GB"`, `siteName`, `url`, `images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }]`.
 - `twitter`: `card: "summary_large_image"`.
 - `robots`: `{ index: true, follow: true }` on production; `noindex` on staging (env-driven).
-- `metadataBase`: `new URL("https://guinchoadventours.pt")` — replace with real domain when confirmed (Phase 12).
+- `metadataBase`: `new URL("https://www.guinchotours.org")` — canonical is the `www` subdomain (matches the existing Wix redirect apex → www).
 
 ## Semantic HTML
 
@@ -58,7 +58,7 @@ App Router native:
 ```ts
 // app/sitemap.ts
 export default function sitemap() {
-  const base = "https://guinchoadventours.pt";
+  const base = "https://www.guinchotours.org";
   return [
     { url: `${base}/`, lastModified: new Date(), priority: 1 },
     { url: `${base}/terms`, lastModified: new Date(), priority: 0.3 },
@@ -69,7 +69,7 @@ export default function sitemap() {
 export default function robots() {
   return {
     rules: { userAgent: "*", allow: "/" },
-    sitemap: "https://guinchoadventours.pt/sitemap.xml",
+    sitemap: "https://www.guinchotours.org/sitemap.xml",
   };
 }
 ```
@@ -160,14 +160,14 @@ node per active ribbon promo, appended to the `@graph`:
 ```json
 {
   "@type": "SpecialAnnouncement",
-  "@id": "https://guinchoadventours.pt/#promo-winter-2026",
+  "@id": "https://www.guinchotours.org/#promo-winter-2026",
   "name": "Winter Special — 15 % off all tours",
   "text": "…same copy as the ribbon…",
   "datePosted": "2026-01-01",
   "expires": "2026-02-28",
   "category": "https://schema.org/AnnouncementCategoryPromotion",
   "spatialCoverage": { "@type": "Place", "name": "Cascais, Portugal" },
-  "announcementLocation": { "@id": "https://guinchoadventours.pt/#business" }
+  "announcementLocation": { "@id": "https://www.guinchotours.org/#business" }
 }
 ```
 
@@ -232,7 +232,7 @@ surface. See Phase 15 for the promo calendar itself.
 
 ## Blockers
 
-- **Production domain** — currently unknown. Placeholder used: `guinchoadventours.pt`. Confirm with Arlindo (Phase 12).
+- **Production domain** — confirmed: `www.guinchotours.org` (registrar + DNS at Wix, no MX records, apex 301s to www). DNS flip: change Wix nameservers to Vercel's, or edit A/CNAME in place.
 - **Latitude/longitude** for the Areia office (LocalBusiness `geo`).
 - **Google Business Profile URL** — needed for `sameAs` link.
 - **Social profile URLs** — Instagram, Facebook, GetYourGuide, TripAdvisor (Phase 12).

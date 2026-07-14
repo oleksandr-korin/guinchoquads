@@ -99,10 +99,10 @@ Every experience page carries its own graph node in addition to the site-wide Lo
 {
   "@context": "https://schema.org",
   "@type": "TouristTrip",
-  "@id": "https://guinchoadventours.pt/tours/quad-bike-tours#trip",
+  "@id": "https://www.guinchotours.org/tours/quad-bike-tours#trip",
   "name": "Quad Bike Tours — Guincho, Cascais",
   "description": "…unique copy from the page…",
-  "provider": { "@id": "https://guinchoadventours.pt/#business" },
+  "provider": { "@id": "https://www.guinchotours.org/#business" },
   "touristType": ["First-time riders", "Adventure seekers"],
   "offers": [ /* pull the matching tiers from data/pricing.ts */ ],
   "image": ["…3 photos…"],
@@ -174,4 +174,4 @@ Wave C:
 
 - **Content per experience** — Arlindo needs to answer the "what's included / meeting point / route highlights / age minimum" questions for each activity. Bundle into the same conversation as terms + RNAAT + insurer facts.
 - **More photos per activity** — one photo per card is OK for a small site, but sub-pages need 3–6 photos each. Arlindo's next photo batch should be organised by activity.
-- **Domain migration** — no point building sub-pages under `guinchoquads.vercel.app` if we'll re-canonicalise later.
+- **Domain migration** — target domain is `www.guinchotours.org` (currently on Wix). Sub-pages built before the DNS flip will re-canonicalise cleanly once `NEXT_PUBLIC_SITE_URL` is set in Vercel prod.

@@ -20,7 +20,7 @@ Things that block phases above. Collect answers from Arlindo in one pass instead
 - **Partner company name** for the Jeep tours — credit them or not? (Phase 5.)
 - **Preferred surname / display name** for the owner trust module. (Phase 8.)
 - **GA4 Measurement ID** — reuse existing Wix property or spin up a fresh GA4 property? (Phase 13.)
-- **Production domain** — `guinchoadventours.pt` used as placeholder. Confirm. (Phase 14.)
+- ~~**Production domain**~~ — resolved: `www.guinchotours.org` (registrar + DNS at Wix, no MX records on the domain today).
 - **Office coordinates** — lat/lng for the Areia office, needed for LocalBusiness `geo`. (Phase 14.)
 - **Google Business Profile URL** and social profile links (Instagram, Facebook, GetYourGuide, TripAdvisor) — needed for `sameAs`. (Phase 14.)
 - **Real review count + average rating** — powers `AggregateRating` structured data. (Phase 14.)
