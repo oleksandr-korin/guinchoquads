@@ -100,5 +100,5 @@ Set up GA4 exploration reports for:
 
 ## Blockers
 
-- **GA4 Measurement ID** — Arlindo either has one already (Wix property) or needs to create a new GA4 property. See `phase-12-open-questions.md`.
+- ~~**GA4 Measurement ID**~~ — resolved: `G-321BYFNLLJ` wired via `NEXT_PUBLIC_GA_ID` in Vercel prod env.
 - **Cookie / privacy policy page** referenced from the banner — piggy-back on the Terms & Conditions page (Phase 9) as a "Privacy" subsection, or add a separate `/privacy` route.

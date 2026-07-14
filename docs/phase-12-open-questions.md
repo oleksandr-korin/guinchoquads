@@ -19,7 +19,7 @@ Things that block phases above. Collect answers from Arlindo in one pass instead
 - **Confirm "~50,000 adventurers"** — Arlindo said "we also change" this figure. What's the real number? (Phase 1.)
 - **Partner company name** for the Jeep tours — credit them or not? (Phase 5.)
 - **Preferred surname / display name** for the owner trust module. (Phase 8.)
-- **GA4 Measurement ID** — reuse existing Wix property or spin up a fresh GA4 property? (Phase 13.)
+- ~~**GA4 Measurement ID**~~ — resolved: `G-321BYFNLLJ`. Set as `NEXT_PUBLIC_GA_ID` in Vercel production env.
 - ~~**Production domain**~~ — resolved: `www.guinchotours.org` (registrar + DNS at Wix, no MX records on the domain today).
 - **Office coordinates** — lat/lng for the Areia office, needed for LocalBusiness `geo`. (Phase 14.)
 - **Google Business Profile URL** and social profile links (Instagram, Facebook, GetYourGuide, TripAdvisor) — needed for `sameAs`. (Phase 14.)
