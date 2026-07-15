@@ -9,6 +9,7 @@ import { PromoCallout } from "@/app/components/promo-callout";
 import { PromoBadge } from "@/app/components/promo-badge";
 import { site, siteUrl } from "@/app/lib/site";
 import { mailtoBooking } from "@/app/lib/mailto";
+import { legal } from "@/app/lib/legal";
 import { primaryNav } from "@/app/lib/nav";
 import { reviews } from "@/data/reviews";
 
@@ -1057,7 +1058,7 @@ export default function Home() {
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
             <a className="hover:text-foreground" href="/terms">Terms</a>
             <a className="hover:text-foreground" href="/privacy">Privacy</a>
-            <span className="text-foreground/40">RNAAT [TODO]</span>
+            <span className="text-foreground/40">RNAAT {legal.rnaat}</span>
           </div>
         </div>
       </footer>
