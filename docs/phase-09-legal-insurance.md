@@ -47,4 +47,4 @@ Arlindo mentioned there's an existing terms page (possibly on the Wix site). We 
 - ~~Existing Terms text~~ — resolved: extracted from Arlindo's PDF, cleaned up and rendered at `/terms`.
 - ~~RNAAT number~~ — resolved: `78/2008`.
 - Insurance underwriter name — still needs to come from Arlindo.
-- NIF / VAT number — still needs to come from Arlindo.
+- ~~NIF / VAT number~~ — resolved: `508 592 917`.

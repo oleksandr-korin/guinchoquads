@@ -14,7 +14,7 @@ Things that block phases above. Collect answers from Arlindo in one pass instead
 ### Business facts
 
 - **Both booking email addresses.** (Phase 10.)
-- ~~**RNAAT registration number**~~ — resolved: `78/2008`. Still need **insurance underwriter** and **NIF/VAT number** for footer + terms. (Phase 9.)
+- ~~**RNAAT registration number**~~ (`78/2008`) and ~~**NIF/VAT**~~ (`508 592 917`) resolved. Still need **insurance underwriter** for terms. (Phase 9.)
 - **3-hour tour price** — the transcript covers 1 h / 1 h 30 / 2 h but not the 3 h number. (Phase 3.)
 - **Confirm "~50,000 adventurers"** — Arlindo said "we also change" this figure. What's the real number? (Phase 1.)
 - **Partner company name** for the Jeep tours — credit them or not? (Phase 5.)
