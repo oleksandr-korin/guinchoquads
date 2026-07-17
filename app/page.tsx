@@ -125,7 +125,7 @@ function jsonLd() {
   };
 
   const localBusiness = {
-    "@type": "TouristAttraction",
+    "@type": ["LocalBusiness", "TouristAttraction"],
     "@id": businessId,
     name: site.name,
     url: site.url,
