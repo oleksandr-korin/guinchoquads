@@ -21,10 +21,62 @@ export const metadata: Metadata = {
   },
 };
 
+function toursJsonLd() {
+  const items = tourSlugs.map((slug) => tours[slug]);
+  const businessId = `${site.url}#business`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${url}#collection`,
+        url,
+        name: "Tours in Guincho, Cascais",
+        description:
+          "Every tour we run out of Areia, Guincho — quads, buggies, sea kayak, mountain bike, hiking, and the Sintra Jeep tour.",
+        isPartOf: { "@id": `${site.url}#website` },
+        about: { "@id": businessId },
+        hasPart: items.map((tour) => ({
+          "@type": "TouristTrip",
+          "@id": `${siteUrl(`/tours/${tour.slug}`)}#trip`,
+          name: tour.title,
+          description: tour.intro,
+          url: siteUrl(`/tours/${tour.slug}`),
+          provider: { "@id": businessId },
+          touristType: tour.eyebrow,
+        })),
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${url}#itemlist`,
+        itemListOrder: "https://schema.org/ItemListOrderAscending",
+        numberOfItems: items.length,
+        itemListElement: items.map((tour, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          url: siteUrl(`/tours/${tour.slug}`),
+          name: tour.title,
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+          { "@type": "ListItem", position: 2, name: "Tours", item: url },
+        ],
+      },
+    ],
+  };
+}
+
 export default function ToursHub() {
   const items = tourSlugs.map((slug) => tours[slug]);
   return (
     <main className="text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(toursJsonLd()) }}
+      />
       <SiteHeader />
 
       <section className="pt-32 pb-16 border-b border-border">

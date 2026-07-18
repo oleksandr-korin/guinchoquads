@@ -55,9 +55,48 @@ const options = [
 
 const bookHref = mailtoBooking("Gift-a-tour voucher");
 
+function giftJsonLd() {
+  const businessId = `${site.url}#business`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Product",
+        "@id": `${url}#voucher`,
+        name: "Guincho Adventours Gift Voucher",
+        description:
+          "Printable gift voucher for any Guincho Adventours tour — quad, buggy, sea kayak, Sintra Jeep, mountain bike or hiking. Valid 12 months.",
+        url,
+        brand: { "@id": businessId },
+        category: "Gift voucher / Adventure experience",
+        offers: {
+          "@type": "AggregateOffer",
+          priceCurrency: "EUR",
+          lowPrice: "25",
+          highPrice: "140",
+          offerCount: 5,
+          availability: "https://schema.org/InStock",
+          seller: { "@id": businessId },
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+          { "@type": "ListItem", position: 2, name: "Gift a tour", item: url },
+        ],
+      },
+    ],
+  };
+}
+
 export default function GiftPage() {
   return (
     <main className="text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(giftJsonLd()) }}
+      />
       <SiteHeader />
 
       <section className="pt-32 pb-16 border-b border-border">
