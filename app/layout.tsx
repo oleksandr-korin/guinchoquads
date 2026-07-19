@@ -6,6 +6,7 @@ import "./globals.css";
 import { site } from "@/app/lib/site";
 import { ConsentBanner } from "@/app/components/consent-banner";
 import { AnalyticsClickBridge } from "@/app/components/analytics-click-bridge";
+import { LanguageHintBanner } from "@/app/components/language-hint-banner";
 import { hreflangAlternates } from "@/app/lib/i18n";
 
 const inter = Inter({
@@ -101,6 +102,7 @@ export default function RootLayout({
         {gaId && <GoogleAnalytics gaId={gaId} />}
         {gaId && <AnalyticsClickBridge />}
         <ConsentBanner enabled={Boolean(gaId)} />
+        <LanguageHintBanner />
       </body>
     </html>
   );

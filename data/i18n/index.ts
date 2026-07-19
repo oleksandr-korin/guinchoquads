@@ -51,6 +51,14 @@ export type LocaleStrings = {
     homeTitle: string;
     homeDescription: string;
   };
+  hint: {
+    // Shown in this locale's native language when we detect a visitor
+    // whose browser language matches THIS locale but who is currently
+    // on a different one.
+    promptToThis: string;
+    yes: string;
+    no: string;
+  };
 };
 
 export const locales = { en, pt, fr } as const satisfies Record<string, LocaleStrings>;

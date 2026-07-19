@@ -69,4 +69,9 @@ export const en: LocaleStrings = {
     homeDescription:
       "Quad bikes, buggies, sea kayak, mountain bike, hiking and Jeep sightseeing along the wild Atlantic coast of Guincho, Cascais. 18 years, ~50,000 happy adventurers.",
   },
+  hint: {
+    promptToThis: "See this page in English?",
+    yes: "Yes",
+    no: "No thanks",
+  },
 };

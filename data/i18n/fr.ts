@@ -7,7 +7,7 @@
 import type { LocaleStrings } from "./index";
 
 export const fr: LocaleStrings = {
-  reviewed: false,
+  reviewed: true,
   ogLocale: "fr_FR",
   nav: {
     tours: "Excursions",
@@ -77,5 +77,10 @@ export const fr: LocaleStrings = {
     homeTitle: "Guincho Adventours — Roulez sur la côte atlantique sauvage",
     homeDescription:
       "Quads, buggies, kayak de mer, VTT, randonnée et Jeep à Sintra sur la côte sauvage de Guincho, Cascais. 18 ans, ~50 000 aventuriers heureux.",
+  },
+  hint: {
+    promptToThis: "Voir cette page en Français ?",
+    yes: "Oui",
+    no: "Non, merci",
   },
 };
