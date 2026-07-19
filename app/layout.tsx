@@ -6,6 +6,7 @@ import "./globals.css";
 import { site } from "@/app/lib/site";
 import { ConsentBanner } from "@/app/components/consent-banner";
 import { AnalyticsClickBridge } from "@/app/components/analytics-click-bridge";
+import { hreflangAlternates } from "@/app/lib/i18n";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -45,7 +46,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: site.legalName }],
   category: "travel",
-  alternates: { canonical: site.url },
+  alternates: {
+    canonical: site.url,
+    languages: hreflangAlternates("/"),
+  },
   openGraph: {
     type: "website",
     url: site.url,

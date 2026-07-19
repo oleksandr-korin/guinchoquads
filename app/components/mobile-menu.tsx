@@ -9,6 +9,7 @@ type Props = {
   links: LinkItem[];
   phone: string;
   bookHref: string;
+  bookLabel?: string;
 };
 
 function MenuIcon({ className = "" }: { className?: string }) {
@@ -62,7 +63,7 @@ function PhoneIcon({ className = "" }: { className?: string }) {
   );
 }
 
-export function MobileMenu({ links, phone, bookHref }: Props) {
+export function MobileMenu({ links, phone, bookHref, bookLabel = "BOOK A TOUR" }: Props) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -129,7 +130,7 @@ export function MobileMenu({ links, phone, bookHref }: Props) {
               onClick={close}
               className="btn btn-primary w-full"
             >
-              BOOK A TOUR
+              {bookLabel}
             </a>
           </div>
         </div>

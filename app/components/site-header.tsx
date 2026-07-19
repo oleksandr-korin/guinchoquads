@@ -4,6 +4,7 @@ import { primaryNav } from "@/app/lib/nav";
 import { mailtoBooking } from "@/app/lib/mailto";
 import { site } from "@/app/lib/site";
 import { MobileMenu } from "@/app/components/mobile-menu";
+import { LanguageSwitcher } from "@/app/components/language-switcher";
 
 // Slim header used by sub-pages. Same primary nav as the homepage so
 // visitors can jump anywhere from anywhere, and Google sees consistent
@@ -31,7 +32,8 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <div className="hidden lg:flex">
+        <div className="hidden lg:flex items-center gap-4">
+          <LanguageSwitcher current="en" />
           <a
             href={mailtoBooking("Booking enquiry")}
             data-track="book_click"
@@ -41,11 +43,14 @@ export function SiteHeader() {
             BOOK A TOUR
           </a>
         </div>
-        <MobileMenu
-          links={primaryNav}
-          phone={site.phones.mobile}
-          bookHref={mailtoBooking("Booking enquiry")}
-        />
+        <div className="lg:hidden flex items-center gap-1">
+          <LanguageSwitcher current="en" />
+          <MobileMenu
+            links={primaryNav}
+            phone={site.phones.mobile}
+            bookHref={mailtoBooking("Booking enquiry")}
+          />
+        </div>
       </div>
     </header>
   );

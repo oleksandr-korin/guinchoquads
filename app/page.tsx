@@ -3,6 +3,7 @@ import { pricingTiers } from "@/data/pricing";
 import { faq } from "@/data/faq";
 import { photos } from "@/data/photos";
 import { MobileMenu } from "@/app/components/mobile-menu";
+import { LanguageSwitcher } from "@/app/components/language-switcher";
 import { PhotoSlot } from "@/app/components/photo-slot";
 import { PromoRibbon } from "@/app/components/promo-ribbon";
 import { PromoCallout } from "@/app/components/promo-callout";
@@ -263,6 +264,7 @@ export default function Home() {
               <PhoneIcon className="w-4 h-4 text-accent" />
               +351 934 479 075
             </a>
+            <LanguageSwitcher current="en" />
             <a
               href={mailtoBooking("Booking enquiry")}
               data-track="book_click"
@@ -272,11 +274,14 @@ export default function Home() {
               BOOK A TOUR
             </a>
           </div>
-          <MobileMenu
-            links={primaryNav}
-            phone="+351 934 479 075"
-            bookHref={mailtoBooking("Booking enquiry")}
-          />
+          <div className="lg:hidden flex items-center gap-1">
+            <LanguageSwitcher current="en" />
+            <MobileMenu
+              links={primaryNav}
+              phone="+351 934 479 075"
+              bookHref={mailtoBooking("Booking enquiry")}
+            />
+          </div>
         </div>
       </header>
 
