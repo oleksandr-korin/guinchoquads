@@ -21,7 +21,7 @@ export function SiteHeader() {
             className="h-10 w-auto"
           />
         </Link>
-        <nav className="hidden lg:flex items-center gap-7 text-sm text-foreground/70 font-medium">
+        <nav className="hidden lg:flex items-center gap-5 xl:gap-6 text-sm text-foreground/70 font-medium">
           {primaryNav.map((link) => (
             <Link
               key={link.href}

@@ -243,7 +243,7 @@ export default function Home() {
               className="h-10 w-auto"
             />
           </a>
-          <nav className="hidden lg:flex items-center gap-7 text-sm text-foreground/70 font-medium">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-6 text-sm text-foreground/70 font-medium">
             {primaryNav.map((link) => (
               <a
                 key={link.href}
@@ -254,15 +254,16 @@ export default function Home() {
               </a>
             ))}
           </nav>
-          <div className="hidden lg:flex items-center gap-5">
+          <div className="hidden lg:flex items-center gap-3 xl:gap-4">
             <a
               href="tel:+351934479075"
               data-track="phone_click"
               data-track-params='{"source":"header"}'
+              aria-label="Call +351 934 479 075"
               className="inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-accent transition whitespace-nowrap"
             >
               <PhoneIcon className="w-4 h-4 text-accent" />
-              +351 934 479 075
+              <span className="hidden xl:inline">+351 934 479 075</span>
             </a>
             <LanguageSwitcher current="en" />
             <a

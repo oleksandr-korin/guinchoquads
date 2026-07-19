@@ -58,7 +58,7 @@ export function LocalizedHome({ locale, strings }: Props) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={photos.logo.src} alt={photos.logo.alt} className="h-10 w-auto" />
           </Link>
-          <nav className="hidden lg:flex items-center gap-7 text-sm text-foreground/70 font-medium">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-6 text-sm text-foreground/70 font-medium">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
