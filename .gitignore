@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# seo-agent analytics snapshots — local business data, never publish.
+data/analytics-snapshots/*.json

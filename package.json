@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev --webpack -p 4488",
     "build": "next build",
-    "start": "next start -p 4488"
+    "start": "next start -p 4488",
+    "seo:snap": "tsx scripts/seo-agent/snapshot.ts --days=7",
+    "seo:diff": "tsx scripts/seo-agent/snapshot-diff.ts"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.10",

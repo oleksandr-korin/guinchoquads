@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  macOS LaunchAgent for the weekly SEO snapshot.
+
+  Install:
+    1) Create ~/.config/ga/seo-agent.env with:
+       export GOOGLE_APPLICATION_CREDENTIALS=$HOME/.config/ga/guinchotours.json
+       export GA_PROPERTY_ID=545586473
+       export SC_SITE_URL=sc-domain:guinchotours.org
+
+    2) Copy this file, replacing REPO_ROOT with the real absolute path:
+       cp scripts/seo-agent/weekly.plist.example \
+          ~/Library/LaunchAgents/org.guinchotours.seo-weekly.plist
+       Then edit ~/Library/LaunchAgents/org.guinchotours.seo-weekly.plist
+       and replace REPO_ROOT below with the absolute path of this repo.
+
+    3) Load it:
+       launchctl load ~/Library/LaunchAgents/org.guinchotours.seo-weekly.plist
+
+    4) Test it fires now without waiting:
+       launchctl start org.guinchotours.seo-weekly
+
+  Runs every Monday at 09:15 local time.
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>org.guinchotours.seo-weekly</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>REPO_ROOT/scripts/seo-agent/run-weekly.sh</string>
+  </array>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Weekday</key>
+    <integer>1</integer>
+    <key>Hour</key>
+    <integer>9</integer>
+    <key>Minute</key>
+    <integer>15</integer>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>REPO_ROOT/data/analytics-snapshots/_launchd.stdout.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>REPO_ROOT/data/analytics-snapshots/_launchd.stderr.log</string>
+
+  <key>RunAtLoad</key>
+  <false/>
+</dict>
+</plist>
