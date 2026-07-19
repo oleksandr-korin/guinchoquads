@@ -25,7 +25,7 @@ export const en: LocaleStrings = {
   meta: {
     homeTitle: "Guincho Adventours — Ride the wild Atlantic coast",
     homeDescription:
-      "Quad bikes, buggies, sea kayak, mountain bike, hiking and Jeep sightseeing along the wild Atlantic coast of Guincho, Cascais. 18 years, ~50,000 happy adventurers.",
+      "Quad bikes, buggies, sea kayak, mountain bike, hiking and Jeep sightseeing along the wild Atlantic coast of Guincho, Cascais. 18 years, ~30,000 happy adventurers.",
   },
   hero: {
     location: "AREIA · GUINCHO · CASCAIS",
@@ -35,12 +35,12 @@ export const en: LocaleStrings = {
       "Quad bikes, buggies and guided trails along the cliffs of Guincho, Cascais — minutes from Sintra and Lisbon. Real off-road adventure, run by locals who know every dune.",
     primaryCta: "BOOK A TOUR",
     secondaryCta: "Explore experiences",
-    starsCaption: "Loved by ~50,000 adventurers over 18 years",
+    starsCaption: "Loved by ~30,000 adventurers over 18 years",
   },
   stats: [
     { value: "18", label: "Years on the trails" },
-    { value: "100,000+", label: "Kilometres ridden" },
-    { value: "~50,000", label: "Happy adventurers" },
+    { value: "50,000+", label: "Kilometres ridden" },
+    { value: "~30,000", label: "Happy adventurers" },
     { value: "6", label: "Ways to explore" },
   ],
   experiencesSection: {
@@ -250,7 +250,7 @@ export const en: LocaleStrings = {
       "Eighteen years on these trails. If you email us, I'm the one who writes back — no call centre, no chatbot.",
     stats: [
       { value: "18", label: "Years guiding" },
-      { value: "~50k", label: "Riders looked after" },
+      { value: "~30k", label: "Riders looked after" },
       { value: "365", label: "Days a year, open" },
     ],
     cta: "Email Arlindo",

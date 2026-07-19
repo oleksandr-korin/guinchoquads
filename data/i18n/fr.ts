@@ -25,7 +25,7 @@ export const fr: LocaleStrings = {
   meta: {
     homeTitle: "Guincho Adventours — Roulez sur la côte atlantique sauvage",
     homeDescription:
-      "Quads, buggies, kayak de mer, VTT, randonnée et Jeep à Sintra sur la côte sauvage de Guincho, Cascais. 18 ans, ~50 000 aventuriers heureux.",
+      "Quads, buggies, kayak de mer, VTT, randonnée et Jeep à Sintra sur la côte sauvage de Guincho, Cascais. 18 ans, ~30 000 aventuriers heureux.",
   },
   hero: {
     location: "AREIA · GUINCHO · CASCAIS",
@@ -35,12 +35,12 @@ export const fr: LocaleStrings = {
       "Quads, buggies et sentiers guidés le long des falaises de Guincho, Cascais — à quelques minutes de Sintra et Lisbonne. Vraie aventure tout-terrain, menée par des locaux qui connaissent chaque dune.",
     primaryCta: "RÉSERVER",
     secondaryCta: "Explorer les expériences",
-    starsCaption: "Adopté par ~50 000 aventuriers en 18 ans",
+    starsCaption: "Adopté par ~30 000 aventuriers en 18 ans",
   },
   stats: [
     { value: "18", label: "Ans sur les sentiers" },
-    { value: "100 000+", label: "Kilomètres parcourus" },
-    { value: "~50 000", label: "Aventuriers heureux" },
+    { value: "50 000+", label: "Kilomètres parcourus" },
+    { value: "~30 000", label: "Aventuriers heureux" },
     { value: "6", label: "Façons d'explorer" },
   ],
   experiencesSection: {
@@ -259,7 +259,7 @@ export const fr: LocaleStrings = {
       "Dix-huit ans sur ces sentiers. Si vous nous écrivez, c'est moi qui réponds — pas de call center, pas de chatbot.",
     stats: [
       { value: "18", label: "Ans comme guide" },
-      { value: "~50k", label: "Aventuriers accompagnés" },
+      { value: "~30k", label: "Aventuriers accompagnés" },
       { value: "365", label: "Jours par an ouverts" },
     ],
     cta: "Écrire à Arlindo",

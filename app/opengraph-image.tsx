@@ -109,7 +109,7 @@ export default async function OpenGraphImage() {
               textTransform: "uppercase",
             }}
           >
-            18 years · 50k riders
+            18 years · 30k riders
           </div>
         </div>
       </div>

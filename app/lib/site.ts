@@ -7,7 +7,7 @@ export const site = {
   legalName: "Guincho Adventours",
   tagline: "Ride the wild Atlantic coast",
   description:
-    "Quad bikes, buggies, sea kayak, mountain bike, hiking and Jeep sightseeing along the wild Atlantic coast of Guincho, Cascais — minutes from Sintra and Lisbon. 18 years, ~50,000 happy adventurers.",
+    "Quad bikes, buggies, sea kayak, mountain bike, hiking and Jeep sightseeing along the wild Atlantic coast of Guincho, Cascais — minutes from Sintra and Lisbon. 18 years, ~30,000 happy adventurers.",
   url:
     process.env.NEXT_PUBLIC_SITE_URL || "https://www.guinchotours.org",
   phones: {

@@ -90,8 +90,8 @@ const LOGO = photos.logo.src;
 
 const stats = [
   { value: "18", label: "Years on the trails" },
-  { value: "100,000+", label: "Kilometres ridden" },
-  { value: "~50,000", label: "Happy adventurers" },
+  { value: "50,000+", label: "Kilometres ridden" },
+  { value: "~30,000", label: "Happy adventurers" },
   { value: "6", label: "Ways to explore" },
 ];
 
@@ -346,7 +346,7 @@ export default function Home() {
             </div>
             <div className="mt-8 flex items-center gap-3 text-sm text-foreground/70 md:justify-end">
               <Stars />
-              <span>Loved by ~50,000 adventurers over 18 years</span>
+              <span>Loved by ~30,000 adventurers over 18 years</span>
             </div>
           </div>
         </div>
@@ -879,7 +879,7 @@ export default function Home() {
                 </div>
                 <div>
                   <div className="font-heading text-4xl md:text-5xl leading-none">
-                    ~50k
+                    ~30k
                   </div>
                   <div className="mt-2 text-[11px] uppercase tracking-widest text-foreground/60 leading-tight">
                     Riders looked after

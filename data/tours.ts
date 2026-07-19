@@ -106,7 +106,7 @@ export const tours: Record<string, Tour> = {
     related: ["buggies", "jeep-sintra-tour", "mountain-bike"],
     metaTitle: "Quad Bike Tours in Guincho, Cascais",
     metaDescription:
-      "Guided quad bike tours along the Guincho coast — 1 h, 1 h 30, 2 h and 3 h. Automatic ATVs, all levels welcome, from €60. 18 years, ~50,000 riders.",
+      "Guided quad bike tours along the Guincho coast — 1 h, 1 h 30, 2 h and 3 h. Automatic ATVs, all levels welcome, from €60. 18 years, ~30,000 riders.",
     keywords: [
       "quad bike Cascais",
       "quad tour Guincho",

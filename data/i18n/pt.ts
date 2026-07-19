@@ -25,7 +25,7 @@ export const pt: LocaleStrings = {
   meta: {
     homeTitle: "Guincho Adventours — Explore a costa Atlântica selvagem",
     homeDescription:
-      "Moto-4, buggies, caiaque de mar, BTT, caminhadas e Jeep de Sintra na costa selvagem do Guincho, Cascais. 18 anos, ~50 000 aventureiros felizes.",
+      "Moto-4, buggies, caiaque de mar, BTT, caminhadas e Jeep de Sintra na costa selvagem do Guincho, Cascais. 18 anos, ~30 000 aventureiros felizes.",
   },
   hero: {
     location: "AREIA · GUINCHO · CASCAIS",
@@ -35,12 +35,12 @@ export const pt: LocaleStrings = {
       "Moto-4, buggies e trilhos guiados nas falésias do Guincho, Cascais — a minutos de Sintra e Lisboa. Aventura off-road a sério, com guias locais que conhecem cada duna.",
     primaryCta: "RESERVAR PASSEIO",
     secondaryCta: "Explorar experiências",
-    starsCaption: "Escolhido por ~50 000 aventureiros ao longo de 18 anos",
+    starsCaption: "Escolhido por ~30 000 aventureiros ao longo de 18 anos",
   },
   stats: [
     { value: "18", label: "Anos nos trilhos" },
-    { value: "100 000+", label: "Quilómetros percorridos" },
-    { value: "~50 000", label: "Aventureiros felizes" },
+    { value: "50 000+", label: "Quilómetros percorridos" },
+    { value: "~30 000", label: "Aventureiros felizes" },
     { value: "6", label: "Formas de explorar" },
   ],
   experiencesSection: {
@@ -258,7 +258,7 @@ export const pt: LocaleStrings = {
       "Dezoito anos nestes trilhos. Se nos enviar um email, sou eu que respondo — sem call center, sem chatbot.",
     stats: [
       { value: "18", label: "Anos como guia" },
-      { value: "~50k", label: "Aventureiros levados" },
+      { value: "~30k", label: "Aventureiros levados" },
       { value: "365", label: "Dias por ano abertos" },
     ],
     cta: "Enviar email ao Arlindo",
