@@ -15,9 +15,10 @@ export const site = {
     landline: "+351 214 869 700",
   },
   emails: {
-    // PHASE-12: mailbox not yet provisioned on guinchotours.org — no MX
-    // records on the domain today. Placeholder until Arlindo confirms.
-    booking: "info@guinchotours.org",
+    // Arlindo's real inbox. guinchotours.org has no MX records so the
+    // old info@guinchotours.org address bounced silently — do NOT switch
+    // back until MX + a real mailbox are provisioned on the domain.
+    booking: "guinchoadventours@gmail.com",
   },
   address: {
     street: "Rua da Areia n.º 1306",
