@@ -4,6 +4,7 @@ import { faq } from "@/data/faq";
 import { photos } from "@/data/photos";
 import { MobileMenu } from "@/app/components/mobile-menu";
 import { LanguageSwitcher } from "@/app/components/language-switcher";
+import { WhatsappInline } from "@/app/components/whatsapp-inline";
 import { PhotoSlot } from "@/app/components/photo-slot";
 import { PromoRibbon } from "@/app/components/promo-ribbon";
 import { PromoCallout } from "@/app/components/promo-callout";
@@ -340,6 +341,9 @@ export default function Home() {
                 Explore experiences
               </a>
             </div>
+            <div className="mt-3 md:flex md:justify-end">
+              <WhatsappInline source="hero" />
+            </div>
             <div className="mt-8 flex items-center gap-3 text-sm text-foreground/70 md:justify-end">
               <Stars />
               <span>Loved by ~50,000 adventurers over 18 years</span>
@@ -458,6 +462,9 @@ export default function Home() {
                 <a href="#prices" className="btn btn-secondary">
                   See all durations
                 </a>
+              </div>
+              <div className="mt-3">
+                <WhatsappInline source="signature" topic="3-hour guided ride" />
               </div>
               <div className="mt-10 inline-flex items-baseline gap-3">
                 <span className="font-heading text-7xl md:text-8xl">3</span>
@@ -1018,6 +1025,9 @@ export default function Home() {
             >
               REQUEST BOOKING
             </a>
+            <div className="mt-4">
+              <WhatsappInline source="contact_section" />
+            </div>
           </div>
         </div>
       </section>

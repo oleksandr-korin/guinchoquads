@@ -9,6 +9,7 @@ import { PromoRibbon } from "@/app/components/promo-ribbon";
 import { PromoCallout } from "@/app/components/promo-callout";
 import { PromoBadge } from "@/app/components/promo-badge";
 import { LanguageSwitcher } from "@/app/components/language-switcher";
+import { WhatsappInline } from "@/app/components/whatsapp-inline";
 import { localePath, type Locale } from "@/app/lib/i18n";
 import type { LocaleStrings } from "@/data/i18n";
 
@@ -214,6 +215,9 @@ export function LocalizedHome({ locale, strings }: Props) {
                 {s.hero.secondaryCta}
               </a>
             </div>
+            <div className="mt-3 md:flex md:justify-end">
+              <WhatsappInline locale={locale} source="hero" />
+            </div>
             <div className="mt-8 flex items-center gap-3 text-sm text-foreground/70 md:justify-end">
               <Stars />
               <span>{s.hero.starsCaption}</span>
@@ -330,6 +334,9 @@ export function LocalizedHome({ locale, strings }: Props) {
                 <a href="#prices" className="btn btn-secondary">
                   {s.signature.secondaryCta}
                 </a>
+              </div>
+              <div className="mt-3">
+                <WhatsappInline locale={locale} source="signature" topic="3-hour guided ride" />
               </div>
               <div className="mt-10 inline-flex items-baseline gap-3">
                 <span className="font-heading text-7xl md:text-8xl">3</span>
@@ -805,6 +812,9 @@ export function LocalizedHome({ locale, strings }: Props) {
             >
               {s.contact.formCta}
             </a>
+            <div className="mt-4">
+              <WhatsappInline locale={locale} source="contact_section" />
+            </div>
           </div>
         </div>
       </section>

@@ -24,6 +24,16 @@ const ARIA: Record<string, string> = {
   fr: "Ouvrir WhatsApp pour envoyer un message à Guincho Adventours",
 };
 
+const INLINE_LABELS: Record<string, string> = {
+  en: "or on WhatsApp →",
+  pt: "ou por WhatsApp →",
+  fr: "ou par WhatsApp →",
+};
+
+export function whatsappInlineLabel(locale: string): string {
+  return INLINE_LABELS[locale] ?? INLINE_LABELS.en;
+}
+
 export function whatsappNumber(): string {
   // wa.me requires the international number without leading + or spaces.
   return site.phones.mobile.replace(/[^\d]/g, "");
