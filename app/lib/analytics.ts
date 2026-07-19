@@ -4,6 +4,7 @@ export type EventName =
   | "pricing_tier_click"
   | "experience_click"
   | "phone_click"
+  | "whatsapp_click"
   | "menu_open"
   | "explore_click"
   | "faq_open";

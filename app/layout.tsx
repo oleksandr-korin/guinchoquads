@@ -7,6 +7,7 @@ import { site } from "@/app/lib/site";
 import { ConsentBanner } from "@/app/components/consent-banner";
 import { AnalyticsClickBridge } from "@/app/components/analytics-click-bridge";
 import { LanguageHintBanner } from "@/app/components/language-hint-banner";
+import { WhatsAppFab } from "@/app/components/whatsapp-fab";
 import { hreflangAlternates } from "@/app/lib/i18n";
 
 const inter = Inter({
@@ -103,6 +104,7 @@ export default function RootLayout({
         {gaId && <AnalyticsClickBridge />}
         <ConsentBanner enabled={Boolean(gaId)} />
         <LanguageHintBanner />
+        <WhatsAppFab />
       </body>
     </html>
   );
