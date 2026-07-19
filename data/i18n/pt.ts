@@ -320,6 +320,7 @@ export const pt: LocaleStrings = {
     body:
       "Diga-nos o que quer andar e quando. Confirmamos disponibilidade e pomo-lo nos trilhos.",
     callLabel: "Ligue-nos",
+    emailLabel: "Email",
     visitLabel: "Visite-nos",
     hoursLabel: "Horário",
     hoursValue: "Seg–Dom · 09:00–18:30",

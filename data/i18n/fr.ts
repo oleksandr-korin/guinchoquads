@@ -322,6 +322,7 @@ export const fr: LocaleStrings = {
     body:
       "Dites-nous ce que vous voulez faire et quand. On confirme la disponibilité et on vous met sur les sentiers.",
     callLabel: "Appelez-nous",
+    emailLabel: "E-mail",
     visitLabel: "Venez",
     hoursLabel: "Horaires",
     hoursValue: "Lun–Dim · 09:00–18:30",

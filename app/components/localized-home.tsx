@@ -2,6 +2,7 @@ import Link from "next/link";
 import { photos } from "@/data/photos";
 import { reviews } from "@/data/reviews";
 import { legal } from "@/app/lib/legal";
+import { site } from "@/app/lib/site";
 import { mailtoBooking } from "@/app/lib/mailto";
 import { MobileMenu } from "@/app/components/mobile-menu";
 import { PhotoSlot } from "@/app/components/photo-slot";
@@ -783,6 +784,21 @@ export function LocalizedHome({ locale, strings }: Props) {
               </div>
               <div>
                 <dt className="text-foreground/50 uppercase tracking-widest text-xs">
+                  {s.contact.emailLabel}
+                </dt>
+                <dd className="mt-2">
+                  <a
+                    className="block hover:underline break-all"
+                    href={`mailto:${site.emails.booking}`}
+                    data-track="book_click"
+                    data-track-params='{"source":"contact_email"}'
+                  >
+                    {site.emails.booking}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="text-foreground/50 uppercase tracking-widest text-xs">
                   {s.contact.visitLabel}
                 </dt>
                 <dd className="mt-2 text-foreground/85">
@@ -889,6 +905,16 @@ export function LocalizedHome({ locale, strings }: Props) {
                   data-track-params='{"source":"footer"}'
                 >
                   +351 214 869 700
+                </a>
+              </li>
+              <li>
+                <a
+                  className="hover:underline break-all"
+                  href={`mailto:${site.emails.booking}`}
+                  data-track="book_click"
+                  data-track-params='{"source":"footer_email"}'
+                >
+                  {site.emails.booking}
                 </a>
               </li>
               <li>Rua da Areia n.º 1306, Areia, 2750-095 Cascais</li>

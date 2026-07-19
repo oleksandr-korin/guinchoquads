@@ -312,6 +312,7 @@ export const en: LocaleStrings = {
     body:
       "Tell us what you'd like to ride and when. We'll confirm availability and get you out on the trails.",
     callLabel: "Call us",
+    emailLabel: "Email",
     visitLabel: "Visit",
     hoursLabel: "Hours",
     hoursValue: "Mon–Sun · 09:00–18:30",

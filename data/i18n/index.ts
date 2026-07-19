@@ -159,6 +159,7 @@ export type LocaleStrings = {
     titleLine2: string;
     body: string;
     callLabel: string;
+    emailLabel: string;
     visitLabel: string;
     hoursLabel: string;
     hoursValue: string;
