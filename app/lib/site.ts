@@ -33,11 +33,14 @@ export const site = {
     lat: 38.7267,
     lng: -9.4739,
   },
-  // PHASE-12: paste real profile URLs when we have them.
+  // sameAs URLs for JSON-LD. Verified in July 2026 via public search —
+  // Arlindo to confirm and add any missing profiles (Facebook, Google
+  // Business Profile, GetYourGuide).
   socials: {
-    instagram: "",
+    instagram: "https://www.instagram.com/guincho_adventours/",
     facebook: "",
-    tripadvisor: "",
+    tripadvisor:
+      "https://www.tripadvisor.com/Attraction_Review-g189154-d1985823-Reviews-Guincho_Adventours-Cascais_Lisbon_District_Central_Portugal.html",
     getYourGuide: "",
     googleBusinessProfile: "",
   },
