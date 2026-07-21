@@ -102,3 +102,19 @@ Set up GA4 exploration reports for:
 
 - ~~**GA4 Measurement ID**~~ — resolved: `G-321BYFNLLJ` wired via `NEXT_PUBLIC_GA_ID` in Vercel prod env.
 - **Cookie / privacy policy page** referenced from the banner — piggy-back on the Terms & Conditions page (Phase 9) as a "Privacy" subsection, or add a separate `/privacy` route.
+
+## TODO — register custom event parameters as GA4 dimensions
+
+Every `book_click`, `pricing_tier_click`, `whatsapp_click`, `experience_click` etc. fires with a `source` param (`hero`, `signature`, `contact_section`, `contact_email`, `footer_email`, `jeep`, `stag`, `corporate`, `owner`, `header`, `fab`, `tour_<slug>` …) and `pricing_tier_click` additionally carries `tier` (`1h` / `1h30` / `2h` / `3h`). These are captured by GA4 but **not queryable via the Data API** until they are registered as **custom dimensions** in GA4 Admin.
+
+Setup, 2 minutes when Arlindo/Alex want the finer detail:
+
+1. GA4 → Admin → Custom Definitions → Custom Dimensions → **Create custom dimension**.
+2. Scope: **Event**. Dimension name: `source`. Event parameter: `source`. Description: "Which page section fired the CTA click." Save.
+3. Repeat for `tier`.
+4. Wait 24–48 h for data to backfill in reports.
+5. Then `scripts/seo-agent/reports/tours-clicked.ts` returns real `byTier` and `bySource` breakdowns (currently they error with `INVALID_ARGUMENT` because the dimensions don't exist). No script change needed.
+
+Unlocks: "which homepage section drives clicks", "which price tier is most enquired about", "hero vs contact_email vs footer_email conversion split", "WhatsApp FAB vs inline link performance".
+
+Until then, `pagePath` breakdown in the same report is the coarse proxy — good enough to see which subpages convert, not fine-grained enough to see which section on the homepage does the work.
