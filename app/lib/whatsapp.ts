@@ -10,24 +10,28 @@ const PREFILLS: Record<string, string> = {
   en: "Hi Arlindo, I'd like to enquire about a tour.",
   pt: "Olá Arlindo, gostaria de saber mais sobre um passeio.",
   fr: "Bonjour Arlindo, je souhaiterais me renseigner sur une excursion.",
+  de: "Hallo Arlindo, ich interessiere mich für eine Tour.",
 };
 
 const LABELS: Record<string, string> = {
   en: "WhatsApp",
   pt: "WhatsApp",
   fr: "WhatsApp",
+  de: "WhatsApp",
 };
 
 const ARIA: Record<string, string> = {
   en: "Open WhatsApp to message Guincho Adventours",
   pt: "Abrir o WhatsApp para enviar mensagem à Guincho Adventours",
   fr: "Ouvrir WhatsApp pour envoyer un message à Guincho Adventours",
+  de: "WhatsApp öffnen und Guincho Adventours schreiben",
 };
 
 const INLINE_LABELS: Record<string, string> = {
   en: "or on WhatsApp →",
   pt: "ou por WhatsApp →",
   fr: "ou par WhatsApp →",
+  de: "oder per WhatsApp →",
 };
 
 export function whatsappInlineLabel(locale: string): string {

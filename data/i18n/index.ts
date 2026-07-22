@@ -12,6 +12,7 @@ import { tourSlugs } from "@/data/tours";
 import { en } from "./en";
 import { pt } from "./pt";
 import { fr } from "./fr";
+import { de } from "./de";
 
 export type TourSlug = (typeof tourSlugs)[number];
 
@@ -202,4 +203,4 @@ export type LocaleStrings = {
   tours: Partial<Record<TourSlug, { title: string; short: string }>>;
 };
 
-export const locales = { en, pt, fr } as const satisfies Record<string, LocaleStrings>;
+export const locales = { en, pt, fr, de } as const satisfies Record<string, LocaleStrings>;

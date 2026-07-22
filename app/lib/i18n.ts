@@ -6,7 +6,7 @@
 import { site, siteUrl } from "@/app/lib/site";
 import { locales as localeStrings } from "@/data/i18n";
 
-export const locales = ["en", "pt", "fr"] as const;
+export const locales = ["en", "pt", "fr", "de"] as const;
 export type Locale = (typeof locales)[number];
 
 export const defaultLocale: Locale = "en";
@@ -15,12 +15,14 @@ export const localeLabels: Record<Locale, string> = {
   en: "English",
   pt: "Português",
   fr: "Français",
+  de: "Deutsch",
 };
 
 export const localeFlags: Record<Locale, string> = {
   en: "EN",
   pt: "PT",
   fr: "FR",
+  de: "DE",
 };
 
 // og:locale for social/OG metadata.
@@ -28,6 +30,7 @@ export const ogLocales: Record<Locale, string> = {
   en: "en_GB",
   pt: "pt_PT",
   fr: "fr_FR",
+  de: "de_DE",
 };
 
 export function isLocale(x: string): x is Locale {
