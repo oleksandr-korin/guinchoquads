@@ -11,7 +11,9 @@ const isProd = process.env.VERCEL_ENV === "production";
 const noindex = isProd && !strings.reviewed;
 
 export const metadata: Metadata = {
-  title: strings.meta.homeTitle,
+  // Locale titles already carry the brand — bypass the layout's "%s — Guincho
+  // Adventours" template to avoid a duplicated suffix.
+  title: { absolute: strings.meta.homeTitle },
   description: strings.meta.homeDescription,
   alternates: {
     canonical: url,
