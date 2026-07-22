@@ -41,4 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 # seo-agent analytics snapshots — local business data, never publish.
-data/analytics-snapshots/*.json
+# Ignore everything under here except the placeholder .gitkeep files.
+data/analytics-snapshots/**
+!data/analytics-snapshots/.gitkeep
+!data/analytics-snapshots/legacy-wix/.gitkeep
