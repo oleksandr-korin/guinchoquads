@@ -119,7 +119,10 @@ export function MobileMenu({ links, phone, bookHref, bookLabel = "BOOK A TOUR" }
           <div className="container-wrap py-5 border-t border-border flex flex-col gap-4">
             <a
               href={`tel:${phone.replace(/\s+/g, "")}`}
-              onClick={close}
+              onClick={() => {
+                track("phone_click", { cta_source: "mobile_menu" });
+                close();
+              }}
               className="inline-flex items-center gap-3 text-sm font-semibold text-foreground"
             >
               <PhoneIcon className="w-4 h-4 text-accent" />
@@ -127,7 +130,10 @@ export function MobileMenu({ links, phone, bookHref, bookLabel = "BOOK A TOUR" }
             </a>
             <a
               href={bookHref}
-              onClick={close}
+              onClick={() => {
+                track("book_click", { cta_source: "mobile_menu" });
+                close();
+              }}
               className="btn btn-primary w-full"
             >
               {bookLabel}

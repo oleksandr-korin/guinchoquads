@@ -37,10 +37,29 @@ function pathForLocale(pathname: string, targetLocale: Locale): string {
   return localePath(targetLocale, `/${rest.join("/")}`.replace(/\/$/, "") || "/");
 }
 
-export function LanguageHintBanner() {
+export function LanguageHintBanner({ afterConsent = false }: { afterConsent?: boolean }) {
   const pathname = usePathname();
   const router = useRouter();
   const [target, setTarget] = useState<Locale | null>(null);
+  const [consentDone, setConsentDone] = useState(!afterConsent);
+
+  // Both banners render as a fixed bottom sheet in the same spot — wait for
+  // the consent choice so a first-time visitor never sees them stacked.
+  useEffect(() => {
+    if (!afterConsent) return;
+    try {
+      if (window.localStorage.getItem("consent-v1")) {
+        setConsentDone(true);
+        return;
+      }
+    } catch {
+      setConsentDone(true);
+      return;
+    }
+    const onChosen = () => setConsentDone(true);
+    window.addEventListener("consent-chosen", onChosen);
+    return () => window.removeEventListener("consent-chosen", onChosen);
+  }, [afterConsent]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -56,7 +75,7 @@ export function LanguageHintBanner() {
     setTarget(browser);
   }, [pathname]);
 
-  if (!target) return null;
+  if (!target || !consentDone) return null;
 
   const dismiss = () => {
     try {

@@ -108,7 +108,7 @@ export default function RootLayout({
         {gaId && <GoogleAnalytics gaId={gaId} />}
         {gaId && <AnalyticsClickBridge />}
         <ConsentBanner enabled={Boolean(gaId)} />
-        <LanguageHintBanner />
+        <LanguageHintBanner afterConsent={Boolean(gaId)} />
         <WhatsAppFab />
       </body>
     </html>

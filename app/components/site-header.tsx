@@ -18,7 +18,7 @@ export function SiteHeader() {
           <img
             src={photos.logo.src}
             alt={photos.logo.alt}
-            className="h-10 w-auto"
+            className="h-8 sm:h-10 w-auto"
           />
         </Link>
         <nav className="hidden lg:flex items-center gap-5 xl:gap-6 text-sm text-foreground/70 font-medium">
@@ -44,6 +44,14 @@ export function SiteHeader() {
           </a>
         </div>
         <div className="lg:hidden flex items-center gap-1">
+          <a
+            href={mailtoBooking("Booking enquiry")}
+            data-track="book_click"
+            data-track-params='{"cta_source":"mobile_header"}'
+            className="btn btn-primary px-3 py-1.5 text-[11px] whitespace-nowrap"
+          >
+            BOOK
+          </a>
           <LanguageSwitcher current="en" />
           <MobileMenu
             links={primaryNav}

@@ -45,6 +45,8 @@ export function PhotoSlot({
       <img
         src={photo.src}
         alt={photo.alt}
+        loading={variant === "hero" ? "eager" : "lazy"}
+        decoding="async"
         className={imgClassName || className}
       />
     );

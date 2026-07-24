@@ -37,6 +37,8 @@ export function ConsentBanner({ enabled }: { enabled: boolean }) {
   function choose(choice: Choice) {
     setConsent(choice);
     setVisible(false);
+    // Lets other bottom-sheet UI (language hint) wait its turn.
+    window.dispatchEvent(new Event("consent-chosen"));
   }
 
   return (

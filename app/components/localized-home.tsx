@@ -122,7 +122,7 @@ export function LocalizedHome({ locale, strings }: Props) {
         <div className="container-wrap flex items-center justify-between h-16 gap-4">
           <a href="#top" className="flex items-center gap-2 shrink-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={photos.logo.src} alt={photos.logo.alt} className="h-10 w-auto" />
+            <img src={photos.logo.src} alt={photos.logo.alt} className="h-8 sm:h-10 w-auto" />
           </a>
           <nav className="hidden lg:flex items-center gap-5 xl:gap-6 text-sm text-foreground/70 font-medium">
             {localizedNav.map((link) => (
@@ -157,6 +157,14 @@ export function LocalizedHome({ locale, strings }: Props) {
             </a>
           </div>
           <div className="lg:hidden flex items-center gap-1">
+            <a
+              href={bookHref}
+              data-track="book_click"
+              data-track-params='{"cta_source":"mobile_header"}'
+              className="btn btn-primary px-3 py-1.5 text-[11px] whitespace-nowrap"
+            >
+              {s.nav.book}
+            </a>
             <LanguageSwitcher current={locale} />
             <MobileMenu
               links={localizedNav}
@@ -179,6 +187,7 @@ export function LocalizedHome({ locale, strings }: Props) {
             <img
               src={photos.hero.src}
               alt={photos.hero.alt}
+              fetchPriority="high"
               className="absolute inset-0 h-full w-full object-cover"
             />
           </picture>
