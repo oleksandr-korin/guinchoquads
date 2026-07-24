@@ -34,33 +34,41 @@ function groupJsonLd(slug: string) {
   const g = groups[slug];
   if (!g) return null;
   const url = siteUrl(`/groups/${slug}`);
-  return {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Service",
-        "@id": `${url}#service`,
-        serviceType: g.title,
-        name: g.metaTitle,
-        description: g.metaDescription,
-        provider: { "@id": `${site.url}#business` },
-        areaServed: { "@type": "Place", name: "Cascais, Portugal" },
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: site.url },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Groups",
-            item: siteUrl("/#groups"),
-          },
-          { "@type": "ListItem", position: 3, name: g.title, item: url },
-        ],
-      },
-    ],
-  };
+  const graph: object[] = [
+    {
+      "@type": "Service",
+      "@id": `${url}#service`,
+      serviceType: g.title,
+      name: g.metaTitle,
+      description: g.metaDescription,
+      provider: { "@id": `${site.url}#business` },
+      areaServed: { "@type": "Place", name: "Cascais, Portugal" },
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Groups",
+          item: siteUrl("/#groups"),
+        },
+        { "@type": "ListItem", position: 3, name: g.title, item: url },
+      ],
+    },
+  ];
+  if (g.faq) {
+    graph.push({
+      "@type": "FAQPage",
+      mainEntity: g.faq.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
+    });
+  }
+  return { "@context": "https://schema.org", "@graph": graph };
 }
 
 export default async function GroupPageDetail({
@@ -135,6 +143,43 @@ export default async function GroupPageDetail({
         </div>
       </section>
 
+      {g.itineraries && (
+        <section className="py-20 md:py-24 border-t border-border">
+          <div className="container-wrap">
+            <span className="eyebrow">Pick your day</span>
+            <h2 className="font-heading uppercase text-4xl md:text-5xl mt-4 leading-tight">
+              Three formats that work
+            </h2>
+            <div className="mt-10 grid md:grid-cols-3 gap-6">
+              {g.itineraries.map((it) => (
+                <article
+                  key={it.title}
+                  className="rounded-2xl border border-border bg-card p-7 flex flex-col"
+                >
+                  <div className="text-xs uppercase tracking-widest text-foreground/50 font-semibold">
+                    {it.format}
+                  </div>
+                  <h3 className="font-heading uppercase text-2xl md:text-3xl mt-3 leading-tight">
+                    {it.title}
+                  </h3>
+                  <p className="mt-4 text-sm text-foreground/75 leading-relaxed">
+                    {it.body}
+                  </p>
+                  <ul className="mt-5 space-y-2 text-sm text-foreground/70">
+                    {it.bullets.map((b) => (
+                      <li key={b} className="flex gap-2">
+                        <span className="text-accent">•</span>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="py-20 md:py-24 border-t border-border">
         <div className="container-wrap grid md:grid-cols-3 gap-10">
           <div>
@@ -172,6 +217,64 @@ export default async function GroupPageDetail({
           </div>
         </div>
       </section>
+
+      {g.capacity && (
+        <section className="py-20 md:py-24 border-t border-border">
+          <div className="container-wrap max-w-3xl">
+            <span className="eyebrow">Group sizes</span>
+            <h2 className="font-heading uppercase text-4xl md:text-5xl mt-4 leading-tight">
+              How we scale the day
+            </h2>
+            <div className="mt-10 divide-y divide-border border-y border-border">
+              {g.capacity.map((row) => (
+                <div key={row.size} className="py-4 flex gap-6 items-baseline">
+                  <div className="font-heading text-2xl md:text-3xl text-accent w-24 shrink-0">
+                    {row.size}
+                  </div>
+                  <p className="text-sm md:text-base text-foreground/80 leading-relaxed">
+                    {row.setup}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {g.faq && (
+        <section className="py-20 md:py-24 border-t border-border">
+          <div className="container-wrap max-w-3xl">
+            <span className="eyebrow">FAQ</span>
+            <h2 className="font-heading uppercase text-4xl md:text-5xl mt-4 leading-tight">
+              What organisers ask us
+            </h2>
+            <div className="mt-10 divide-y divide-border border-y border-border">
+              {g.faq.map((item, idx) => (
+                <details
+                  key={item.q}
+                  className="group py-5"
+                  {...(idx === 0 ? { open: true } : {})}
+                >
+                  <summary className="flex items-start justify-between gap-6 list-none cursor-pointer">
+                    <span className="font-heading uppercase text-lg md:text-xl leading-snug">
+                      {item.q}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="mt-1 shrink-0 w-6 h-6 rounded-full border border-border flex items-center justify-center text-foreground/60 transition group-open:rotate-45 group-open:border-accent group-open:text-accent"
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <div className="mt-3 text-foreground/75 leading-relaxed">
+                    {item.a}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="py-20 md:py-24 border-t border-border">
         <div className="container-wrap">
