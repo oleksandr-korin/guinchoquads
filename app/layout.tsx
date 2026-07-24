@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Anton, Inter } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import "./globals.css";
 import { site } from "@/app/lib/site";
@@ -100,6 +101,10 @@ export default function RootLayout({
 
         {children}
 
+        {/* Cookieless first-party counting — runs regardless of the consent
+            banner (no cookies, no PII) and captures the visitors GA4 misses
+            when consent is declined. */}
+        <Analytics />
         {gaId && <GoogleAnalytics gaId={gaId} />}
         {gaId && <AnalyticsClickBridge />}
         <ConsentBanner enabled={Boolean(gaId)} />
