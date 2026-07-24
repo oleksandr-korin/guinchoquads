@@ -55,14 +55,14 @@ Keep the event vocabulary small and stable so GA4 dashboards don't fragment.
 
 ## Event vocabulary
 
-All events carry a `source` param so the same event can be attributed to its origin.
+All events carry a `cta_source` param so the same event can be attributed to its origin. (The param was originally named `source`, but GA4 treats an event param literally named `source` as a manual traffic-source override, corrupting acquisition attribution — hence the rename.)
 
 | Event | When | Params |
 |---|---|---|
-| `book_click` | Any "Book" CTA (header, hero, signature, prices, jeep, stag, corporate) | `source: "header" \| "hero" \| "signature" \| "prices_{tier}" \| "jeep" \| "stag" \| "corporate" \| "mobile_menu"` |
+| `book_click` | Any "Book" CTA (header, hero, signature, prices, jeep, stag, corporate) | `cta_source: "header" \| "hero" \| "signature" \| "prices_{tier}" \| "jeep" \| "stag" \| "corporate" \| "mobile_menu"` |
 | `pricing_tier_click` | Card CTA in Prices section | `tier: "1h" \| "1h30" \| "2h" \| "3h"` |
 | `experience_click` | Any experience-card tap | `slug: "quad-bike-tours" \| ...` |
-| `phone_click` | `tel:` link in header, mobile menu, or contact panel | `source: "header" \| "mobile_menu" \| "contact"` |
+| `phone_click` | `tel:` link in header, mobile menu, or contact panel | `cta_source: "header" \| "mobile_menu" \| "contact"` |
 | `menu_open` | Mobile hamburger opened | — |
 | `explore_click` | Hero "Explore experiences" secondary CTA | — |
 
@@ -84,7 +84,7 @@ Alternative: use Vercel Marketplace consent integration (Cookiebot, Iubenda) —
 
 Set up GA4 exploration reports for:
 
-1. **Booking funnel** — number of `book_click` events by `source`. Which section drives the most enquiries?
+1. **Booking funnel** — number of `book_click` events by `cta_source`. Which section drives the most enquiries?
 2. **Price sensitivity** — `pricing_tier_click` breakdown. Confirms Arlindo's hypothesis that 1 h dominates.
 3. **Traffic vs enquiries** — session count vs total `book_click`. Rough conversion signal.
 4. **Device split** — mobile vs desktop `book_click` rate. Informs whether the mobile menu is worth further polish.
@@ -94,7 +94,7 @@ Set up GA4 exploration reports for:
 
 - GA4 tag loads only when `NEXT_PUBLIC_GA_ID` is set.
 - Consent banner blocks all analytics until the visitor accepts.
-- Every CTA on the page fires exactly one event with a stable `source` label.
+- Every CTA on the page fires exactly one event with a stable `cta_source` label.
 - Dev environment (localhost) does not send events unless a test GA property ID is set locally.
 - No PII in event params — never send the mailto address, name, or phone as an event parameter.
 
@@ -105,12 +105,12 @@ Set up GA4 exploration reports for:
 
 ## TODO — register custom event parameters as GA4 dimensions
 
-Every `book_click`, `pricing_tier_click`, `whatsapp_click`, `experience_click` etc. fires with a `source` param (`hero`, `signature`, `contact_section`, `contact_email`, `footer_email`, `jeep`, `stag`, `corporate`, `owner`, `header`, `fab`, `tour_<slug>` …) and `pricing_tier_click` additionally carries `tier` (`1h` / `1h30` / `2h` / `3h`). These are captured by GA4 but **not queryable via the Data API** until they are registered as **custom dimensions** in GA4 Admin.
+Every `book_click`, `pricing_tier_click`, `whatsapp_click`, `experience_click` etc. fires with a `cta_source` param (`hero`, `signature`, `contact_section`, `contact_email`, `footer_email`, `jeep`, `stag`, `corporate`, `owner`, `header`, `fab`, `tour_<slug>` …) and `pricing_tier_click` additionally carries `tier` (`1h` / `1h30` / `2h` / `3h`). These are captured by GA4 but **not queryable via the Data API** until they are registered as **custom dimensions** in GA4 Admin.
 
 Setup, 2 minutes when Arlindo/Alex want the finer detail:
 
 1. GA4 → Admin → Custom Definitions → Custom Dimensions → **Create custom dimension**.
-2. Scope: **Event**. Dimension name: `source`. Event parameter: `source`. Description: "Which page section fired the CTA click." Save.
+2. Scope: **Event**. Dimension name: `cta_source`. Event parameter: `cta_source`. Description: "Which page section fired the CTA click." Save.
 3. Repeat for `tier`.
 4. Wait 24–48 h for data to backfill in reports.
 5. Then `scripts/seo-agent/reports/tours-clicked.ts` returns real `byTier` and `bySource` breakdowns (currently they error with `INVALID_ARGUMENT` because the dimensions don't exist). No script change needed.

@@ -31,7 +31,7 @@ export function WhatsappInline({
       rel="noopener noreferrer"
       aria-label={whatsappAriaLabel(locale)}
       data-track="whatsapp_click"
-      data-track-params={`{"source":"${source}"}`}
+      data-track-params={`{"cta_source":"${source}"}`}
       className={
         "inline-flex items-center text-sm text-foreground/70 hover:text-accent transition underline-offset-4 hover:underline " +
         className

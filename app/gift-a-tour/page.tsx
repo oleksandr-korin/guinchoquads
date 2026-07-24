@@ -123,7 +123,7 @@ export default function GiftPage() {
           <a
             href={bookHref}
             data-track="book_click"
-            data-track-params='{"source":"gift_hero"}'
+            data-track-params='{"cta_source":"gift_hero"}'
             className="btn btn-primary mt-8"
           >
             SEND A GIFT VOUCHER
@@ -218,7 +218,7 @@ export default function GiftPage() {
           <a
             href={bookHref}
             data-track="book_click"
-            data-track-params='{"source":"gift_footer"}'
+            data-track-params='{"cta_source":"gift_footer"}'
             className="btn btn-primary mt-8"
           >
             SEND A GIFT VOUCHER

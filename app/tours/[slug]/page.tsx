@@ -144,7 +144,7 @@ export default async function TourDetail({
             {tour.intro}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href={bookHref} className="btn btn-primary" data-track="book_click" data-track-params={`{"source":"tour_${slug}"}`}>
+            <a href={bookHref} className="btn btn-primary" data-track="book_click" data-track-params={`{"cta_source":"tour_${slug}"}`}>
               BOOK THIS TOUR
             </a>
             <a href="#pricing" className="btn btn-secondary">
@@ -220,7 +220,7 @@ export default async function TourDetail({
                   <a
                     href={mailtoBooking(`${tour.title} — ${v.name}`)}
                     data-track="book_click"
-                    data-track-params={`{"source":"tour_${slug}_${v.id}"}`}
+                    data-track-params={`{"cta_source":"tour_${slug}_${v.id}"}`}
                     className="btn btn-secondary w-full"
                   >
                     Book this tour
@@ -357,7 +357,7 @@ export default async function TourDetail({
           <a
             href={bookHref}
             data-track="book_click"
-            data-track-params={`{"source":"tour_${slug}_footer"}`}
+            data-track-params={`{"cta_source":"tour_${slug}_footer"}`}
             className="btn btn-primary mt-8"
           >
             EMAIL US TO BOOK

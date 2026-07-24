@@ -8,7 +8,7 @@ function arg(name: string, fallback: string): string {
 // Two angles on "which tour is a booking-clicker after":
 //   1. book_click / pagePath  — the URL the click fired from (most direct)
 //   2. pricing_tier_click by tier — separate event with tier param
-//   3. book_click custom source param, if it's been registered as a
+//   3. book_click custom cta_source param, if it's been registered as a
 //      custom dimension in GA4 admin (usually needs one-time setup)
 
 async function main() {
@@ -52,7 +52,7 @@ async function main() {
   }
 
   const byTier = await safeReport("customEvent:tier", ["pricing_tier_click"]);
-  const bySource = await safeReport("customEvent:source", ["book_click", "whatsapp_click"]);
+  const bySource = await safeReport("customEvent:cta_source", ["book_click", "whatsapp_click"]);
 
   const rows = (byPage.rows ?? []).map((r) => ({
     event: r.dimensionValues?.[0]?.value ?? "",

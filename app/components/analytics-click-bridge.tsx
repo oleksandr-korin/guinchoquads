@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { track, type EventName, type EventParams } from "@/app/lib/analytics";
 
 // Listens once at document level. Any element with `data-track="event"`
-// (optional `data-track-params='{"source":"hero"}'`) will fire that
+// (optional `data-track-params='{"cta_source":"hero"}'`) will fire that
 // event on click. This keeps the server-rendered page.tsx clean —
 // no client-component wrappers around every anchor.
 export function AnalyticsClickBridge() {

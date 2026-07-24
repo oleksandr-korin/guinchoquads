@@ -139,7 +139,7 @@ export function LocalizedHome({ locale, strings }: Props) {
             <a
               href="tel:+351934479075"
               data-track="phone_click"
-              data-track-params='{"source":"header"}'
+              data-track-params='{"cta_source":"header"}'
               aria-label="Call +351 934 479 075"
               className="inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-accent transition whitespace-nowrap"
             >
@@ -150,7 +150,7 @@ export function LocalizedHome({ locale, strings }: Props) {
             <a
               href={bookHref}
               data-track="book_click"
-              data-track-params='{"source":"header"}'
+              data-track-params='{"cta_source":"header"}'
               className="btn btn-primary"
             >
               {s.nav.book}
@@ -203,7 +203,7 @@ export function LocalizedHome({ locale, strings }: Props) {
               <a
                 href={bookHref}
                 data-track="book_click"
-                data-track-params='{"source":"hero"}'
+                data-track-params='{"cta_source":"hero"}'
                 className="btn btn-primary"
               >
                 {s.hero.primaryCta}
@@ -327,7 +327,7 @@ export function LocalizedHome({ locale, strings }: Props) {
                 <a
                   href={mailtoBooking("3-hour guided ride")}
                   data-track="book_click"
-                  data-track-params='{"source":"signature"}'
+                  data-track-params='{"cta_source":"signature"}'
                   className="btn btn-primary"
                 >
                   {s.signature.primaryCta}
@@ -507,7 +507,7 @@ export function LocalizedHome({ locale, strings }: Props) {
                 <a
                   href={mailtoBooking("Jeep Sintra tour")}
                   data-track="book_click"
-                  data-track-params='{"source":"jeep"}'
+                  data-track-params='{"cta_source":"jeep"}'
                   className="btn btn-primary"
                 >
                   {s.sightseeing.cta}
@@ -569,7 +569,7 @@ export function LocalizedHome({ locale, strings }: Props) {
               <Link
                 href="/groups/stag-parties"
                 data-track="book_click"
-                data-track-params='{"source":"stag"}'
+                data-track-params='{"cta_source":"stag"}'
                 className="btn btn-primary mt-8 self-start"
               >
                 {s.groups.stag.cta}
@@ -595,7 +595,7 @@ export function LocalizedHome({ locale, strings }: Props) {
               <Link
                 href="/groups/corporate"
                 data-track="book_click"
-                data-track-params='{"source":"corporate"}'
+                data-track-params='{"cta_source":"corporate"}'
                 className="btn btn-primary mt-8 self-start"
               >
                 {s.groups.corporate.cta}
@@ -696,7 +696,7 @@ export function LocalizedHome({ locale, strings }: Props) {
               <a
                 href={mailtoBooking("Question for Arlindo")}
                 data-track="book_click"
-                data-track-params='{"source":"owner"}'
+                data-track-params='{"cta_source":"owner"}'
                 className="btn btn-secondary mt-10"
               >
                 {s.owner.cta}
@@ -768,7 +768,7 @@ export function LocalizedHome({ locale, strings }: Props) {
                     className="block hover:underline"
                     href="tel:+351934479075"
                     data-track="phone_click"
-                    data-track-params='{"source":"contact"}'
+                    data-track-params='{"cta_source":"contact"}'
                   >
                     +351 934 479 075
                   </a>
@@ -776,7 +776,7 @@ export function LocalizedHome({ locale, strings }: Props) {
                     className="block hover:underline"
                     href="tel:+351214869700"
                     data-track="phone_click"
-                    data-track-params='{"source":"contact"}'
+                    data-track-params='{"cta_source":"contact"}'
                   >
                     +351 214 869 700
                   </a>
@@ -791,7 +791,7 @@ export function LocalizedHome({ locale, strings }: Props) {
                     className="block hover:underline break-all"
                     href={`mailto:${site.emails.booking}`}
                     data-track="book_click"
-                    data-track-params='{"source":"contact_email"}'
+                    data-track-params='{"cta_source":"contact_email"}'
                   >
                     {site.emails.booking}
                   </a>
@@ -823,7 +823,7 @@ export function LocalizedHome({ locale, strings }: Props) {
             <a
               href={bookHref}
               data-track="book_click"
-              data-track-params='{"source":"contact_section"}'
+              data-track-params='{"cta_source":"contact_section"}'
               className="btn btn-primary mt-10"
             >
               {s.contact.formCta}
@@ -892,7 +892,7 @@ export function LocalizedHome({ locale, strings }: Props) {
                   className="hover:underline"
                   href="tel:+351934479075"
                   data-track="phone_click"
-                  data-track-params='{"source":"footer"}'
+                  data-track-params='{"cta_source":"footer"}'
                 >
                   +351 934 479 075
                 </a>
@@ -902,7 +902,7 @@ export function LocalizedHome({ locale, strings }: Props) {
                   className="hover:underline"
                   href="tel:+351214869700"
                   data-track="phone_click"
-                  data-track-params='{"source":"footer"}'
+                  data-track-params='{"cta_source":"footer"}'
                 >
                   +351 214 869 700
                 </a>
@@ -912,7 +912,7 @@ export function LocalizedHome({ locale, strings }: Props) {
                   className="hover:underline break-all"
                   href={`mailto:${site.emails.booking}`}
                   data-track="book_click"
-                  data-track-params='{"source":"footer_email"}'
+                  data-track-params='{"cta_source":"footer_email"}'
                 >
                   {site.emails.booking}
                 </a>

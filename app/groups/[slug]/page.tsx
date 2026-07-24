@@ -116,7 +116,7 @@ export default async function GroupPageDetail({
           <a
             href={bookHref}
             data-track="book_click"
-            data-track-params={`{"source":"group_${slug}"}`}
+            data-track-params={`{"cta_source":"group_${slug}"}`}
             className="btn btn-primary mt-8"
           >
             {g.cta.label.toUpperCase()}
@@ -204,7 +204,7 @@ export default async function GroupPageDetail({
           <a
             href={bookHref}
             data-track="book_click"
-            data-track-params={`{"source":"group_${slug}_footer"}`}
+            data-track-params={`{"cta_source":"group_${slug}_footer"}`}
             className="btn btn-primary mt-8"
           >
             {g.cta.label.toUpperCase()}

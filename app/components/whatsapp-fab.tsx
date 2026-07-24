@@ -35,10 +35,10 @@ export function WhatsAppFab() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      onClick={() => track("whatsapp_click", { source: "fab" })}
+      onClick={() => track("whatsapp_click", { cta_source: "fab" })}
       className="fixed bottom-6 left-6 z-[55] flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-2xl hover:scale-105 active:scale-95 transition"
       data-track="whatsapp_click"
-      data-track-params='{"source":"fab"}'
+      data-track-params='{"cta_source":"fab"}'
     >
       <WhatsAppGlyph />
     </a>

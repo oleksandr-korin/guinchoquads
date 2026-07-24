@@ -37,7 +37,7 @@ export function SiteHeader() {
           <a
             href={mailtoBooking("Booking enquiry")}
             data-track="book_click"
-            data-track-params='{"source":"subpage_header"}'
+            data-track-params='{"cta_source":"subpage_header"}'
             className="btn btn-primary"
           >
             BOOK A TOUR
